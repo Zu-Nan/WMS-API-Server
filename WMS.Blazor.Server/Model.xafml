@@ -1,9 +1,985 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application>
-  <Options UIType="TabbedMDI"
-         RestoreTabbedMdiLayout="True"
-         ShowTabImage="True">
-  </Options>
+  <ActionDesign>
+    <Actions>
+      <Action Id="Cancel" Caption="取消" />
+      <Action Id="CancelAction" Caption="取消" />
+      <Action Id="ChangePasswordByUser" Caption="修改用户密码" />
+      <Action Id="ChangeStateAction" Caption="修改状态" />
+      <Action Id="ChangeVariant" Caption="个性化布局" ToolTip="切换当前视图表现形式" />
+      <Action Id="CloneObject" Caption="复制...." ShortCaption="" ToolTip="复制对象" />
+      <Action Id="Close" Caption="关闭" />
+      <Action Id="CloseAllTabsAction" Caption="关闭所有标签页" />
+      <Action Id="CloseAllTabsButThisAction" Caption="关闭除此之外所有标签页" />
+      <Action Id="CloseThisTabAction" Caption="关闭当前标签页" />
+      <Action Id="ColumnChooser" Caption="选择显示列" />
+      <Action Id="CopyModelDifference" Caption="复制模型差异" ToolTip="将设置（模型差异）从一个用户复制到另一个用户。请先选择源设置（即要复制的模型差异），点击此按钮，然后在弹出的窗口中选择目标用户。用户在重新启动应用程序后，这些更改就会生效。" />
+      <Action Id="CopyPredefinedReport" Caption="复制预定义报表" />
+      <Action Id="CreateDashboard" Caption="创建仪表盘" />
+      <Action Id="CreateModelDifferences" Caption="创建模型差异" ToolTip="为所有用户初始化设置（模型差异）。" />
+      <Action Id="DashboardExportToXml" Caption="导出为XML" ToolTip="将此仪表盘的内容导出为 XML" />
+      <Action Id="DashboardSwitchToDesigner" Caption="切换到设计模式" ToolTip="在设计器和工作（查看）模式之间进行切换" />
+      <Action Id="DashboardSwitchToViewer" Caption="切换到查看模式" ToolTip="在设计器和工作（查看）模式之间进行切换" />
+      <Action Id="Delete" Caption="删除" ConfirmationMessage="您即将删除选中的记录。是否要继续？" />
+      <Action Id="Delete Item" Caption="删除项" ConfirmationMessage="您即将删除选中的项目。是否要继续？" />
+      <Action Id="DeleteDashboard" Caption="删除仪表盘" />
+      <Action Id="Diagnostic Info" Caption="诊断" />
+      <Action Id="Diagnostic Info.Actions Info" Caption="诊断信息.操作信息" />
+      <Action Id="Diagnostic Info.Rules Info" Caption="诊断信息.规则信息" />
+      <Action Id="Diagnostic Info.View Info" Caption="诊断信息.视图信息" />
+      <Action Id="DialogCancel" Caption="取消" />
+      <Action Id="DialogClose" Caption="关闭" />
+      <Action Id="DialogOK" Caption="确定" />
+      <Action Id="Dismiss" Caption="忽略" />
+      <Action Id="DismissAll" Caption="全部忽略" ConfirmationMessage="您即将关闭/清除所有通知。是否要继续？" />
+      <Action Id="EditReportController.Edit" Caption="编辑" />
+      <Action Id="ExecuteReport" Caption="执行报表" />
+      <Action Id="Export" Caption="导出为" />
+      <Action Id="ExportModelDifferences" Caption="导出模型差异" />
+      <Action Id="FilterEditor" Caption="筛选编辑器" />
+      <Action Id="FullTextSearch" Caption="按文本过滤" NullValuePrompt="输入要查找的内容..." ToolTip="按文本筛选记录" />
+      <Action Id="HideItemsFromDashboard" Caption="不在仪表盘显示" ToolTip="在仪表盘隐藏所选项" />
+      <Action Id="ImportSharedModelDifference" Caption="导入共享模型差异" ConfirmationMessage="您即将使用 {0} 文件的内容覆盖共享设置（模型差异）。此操作无法撤销。是否继续？" ToolTip="从应用程序文件夹中的 {0} 文件导入共享设置（模型差异）。" />
+      <Action Id="Link" Caption="链接" />
+      <Action Id="ListViewShowObject" Caption="打开" />
+      <Action Id="Logoff" Caption="退出登录" />
+      <Action Id="Logon" Caption="登录" />
+      <Action Id="MergeAction" Caption="合并" />
+      <Action Id="MyDetails" Caption="个人资料" />
+      <Action Id="NavigateBack" Caption="后退" ToolTip="返回到上一个界面" />
+      <Action Id="NavigateForward" Caption="前进" ToolTip="前进到下一个页面" />
+      <Action Id="New" Caption="新建" />
+      <Action Id="NextObject" Caption="下一条记录" />
+      <Action Id="OrganizeDashboard" Caption="仪表盘布局" />
+      <Action Id="PreviewReportV2" Caption="预览" />
+      <Action Id="PreviousObject" Caption="上一条记录" />
+      <Action Id="Refresh" Caption="刷新" />
+      <Action Id="RefreshAction" Caption="刷新" />
+      <Action Id="RefreshNotifications" Caption="刷新" />
+      <Action Id="ReportViewerDialogControllerV2_Close" Caption="关闭" />
+      <Action Id="ReportWizard_Close" Caption="关闭" />
+      <Action Id="ReportWizard_Create" Caption="创建" />
+      <Action Id="ResetModelDifferences" Caption="重置模型差异" ConfirmationMessage="您即将重置所选的设置（模型差异）。是否继续？" ToolTip="重置所选的设置（模型差异）。更改将在用户重启应用程序后生效。" />
+      <Action Id="ResetPassword" Caption="重置密码" ToolTip="为选定的用户生成一个新密码" />
+      <Action Id="ResetViewSettings" Caption="重置视图设置" ConfirmationMessage="您即将重置为 &quot;{0}&quot; 视图所做的所有设置。是否继续？" ToolTip="重置为 &quot;{0}&quot; 视图所做的所有设置。" />
+      <Action Id="Save" Caption="保存" />
+      <Action Id="SaveAndClose" Caption="保存并关闭" />
+      <Action Id="SaveAndNew" Caption="保存并新建" />
+      <Action Id="SearchOpenDetailView" Caption="打开" />
+      <Action Id="SetFilter" Caption="筛选" />
+      <Action Id="ShowAllContexts" Caption="验证" ToolTip="在所有展示的上下文中，验证选定的对象。" />
+      <Action Id="ShowInDocument" Caption="在文档中查看" ToolTip="在文档中显示选定的记录" />
+      <Action Id="ShowInReportV2" Caption="在报表中显示" ToolTip="在报表中显示选定的记录" />
+      <Action Id="ShowItemsOnDashboard" Caption="在仪表盘中显示" ToolTip="在仪表板上显示选定的项目" />
+      <Action Id="ShowNavigationItem" Caption="导航栏" />
+      <Action Id="ShowNotificationsAction" Caption="显示通知操作" />
+      <Action Id="ShowReportDesignerV2" Caption="打开报表设计器" />
+      <Action Id="Snooze" Caption="稍后提醒" />
+      <Action Id="SnoozeListAction" Caption="稍后提醒 {0}" />
+      <Action Id="Unlink" Caption="取消链接" ConfirmationMessage="你即将取消所选记录的关联。确定要继续吗？" />
+    </Actions>
+  </ActionDesign>
+  <Localization>
+    <LocalizationGroup Name="Captions">
+      <LocalizationItem Name="DetailView" Value="详情视图" />
+      <LocalizationItem Name="EditCriteria" Value="编辑条件" />
+      <LocalizationItem Name="ListView" Value="列表视图" />
+      <LocalizationItem Name="View" Value="视图" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Confirmations">
+      <LocalizationItem Name="Cancel" Value="未保存的更改将丢失。您想继续吗？" />
+      <LocalizationItem Name="SaveChanges" Value="未保存的更改将丢失。您想在退出前保存更改吗？" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="DashboardOrganizationItems">
+      <LocalizationItem Name="ActionContainer" Value="操作容器" />
+      <LocalizationItem Name="StaticImage" Value="图片" />
+      <LocalizationItem Name="StaticText" Value="文本" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="DialogButtons">
+      <LocalizationItem Name="Abort" Value="&amp;中止" />
+      <LocalizationItem Name="Add" Value="添加" />
+      <LocalizationItem Name="Apply" Value="应用" />
+      <LocalizationItem Name="Back" Value="&lt; 返回" />
+      <LocalizationItem Name="Cancel" Value="&amp;取消" />
+      <LocalizationItem Name="Close" Value="关闭" />
+      <LocalizationItem Name="Delete" Value="删除" />
+      <LocalizationItem Name="Discard" Value="放弃更改" />
+      <LocalizationItem Name="Edit" Value="编辑" />
+      <LocalizationItem Name="Find" Value="查找" />
+      <LocalizationItem Name="Ignore" Value="&amp;忽略" />
+      <LocalizationItem Name="Next" Value="下一页&gt;" />
+      <LocalizationItem Name="No" Value="否" />
+      <LocalizationItem Name="OK" Value="&amp;是" />
+      <LocalizationItem Name="Remove" Value="移除" />
+      <LocalizationItem Name="Retry" Value="&amp;重试" />
+      <LocalizationItem Name="Save" Value="保存" />
+      <LocalizationItem Name="SaveChanges" Value="保存更改" />
+      <LocalizationItem Name="Yes" Value="是" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Enums">
+      <LocalizationGroup Name="DevExpress.Data.Filtering.Aggregate">
+        <LocalizationItem Name="Avg" Value="平均值" />
+        <LocalizationItem Name="Count" Value="数量" />
+        <LocalizationItem Name="Custom" Value="自定义" />
+        <LocalizationItem Name="Exists" Value="已存在" />
+        <LocalizationItem Name="Max" Value="最大值" />
+        <LocalizationItem Name="Min" Value="最小值" />
+        <LocalizationItem Name="Single" Value="单一" />
+        <LocalizationItem Name="Sum" Value="总和" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.Drawing.DXFontStyle">
+        <LocalizationItem Name="Bold" Value="加粗" />
+        <LocalizationItem Name="Italic" Value="斜体" />
+        <LocalizationItem Name="Regular" Value="标准" />
+        <LocalizationItem Name="Strikeout" Value="删除线" />
+        <LocalizationItem Name="Underline" Value="下划线" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Editors.ViewItemVisibility">
+        <LocalizationItem Name="Hide" Value="隐藏" />
+        <LocalizationItem Name="Show" Value="显示" />
+        <LocalizationItem Name="ShowEmptySpace" Value="显示空白区域" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.ModelDifferenceCopyBehavior">
+        <LocalizationItem Name="Merge" Value="合并" />
+        <LocalizationItem Name="Overwrite" Value="覆盖" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Notifications.NotificationItemState">
+        <LocalizationItem Name="Active" Value="激活" />
+        <LocalizationItem Name="Postponed" Value="推迟" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Notifications.NotificationsType">
+        <LocalizationItem Name="Active" Value="启用" />
+        <LocalizationItem Name="All" Value="全部" />
+        <LocalizationItem Name="Postponed" Value="推迟" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.ReportsV2.ReportType">
+        <LocalizationItem Name="Label" Value="标签" />
+        <LocalizationItem Name="Standard" Value="默认" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Security.ObjectAccess">
+        <LocalizationItem Name="AllAccess" Value="最高权限" />
+        <LocalizationItem Name="ChangeAccess" Value="修改权限" />
+        <LocalizationItem Name="Create" Value="创建" />
+        <LocalizationItem Name="Delete" Value="删除" />
+        <LocalizationItem Name="Navigate" Value="导航" />
+        <LocalizationItem Name="NoAccess" Value="无权限" />
+        <LocalizationItem Name="Read" Value="读" />
+        <LocalizationItem Name="Write" Value="写" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Security.SecurityRequestOperations">
+        <LocalizationItem Name="Create" Value="创建" />
+        <LocalizationItem Name="Delete" Value="删除" />
+        <LocalizationItem Name="Read" Value="读" />
+        <LocalizationItem Name="Write" Value="写" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Templates.ActionsToolbarVisibility">
+        <LocalizationItem Name="Default" Value="默认" />
+        <LocalizationItem Name="Hide" Value="隐藏" />
+        <LocalizationItem Name="Show" Value="显示" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.Persistent.AuditTrail.AuditOperationType">
+        <LocalizationItem Name="AddedToCollection" Value="已添加到集合" />
+        <LocalizationItem Name="AggregatedObjectChanged" Value="聚合对象已更改" />
+        <LocalizationItem Name="CollectionObjectChanged" Value="集合对象已更改" />
+        <LocalizationItem Name="CustomData" Value="自定义数据" />
+        <LocalizationItem Name="InitialValueAssigned" Value="初始值已分配" />
+        <LocalizationItem Name="ObjectChanged" Value="对象已更改" />
+        <LocalizationItem Name="ObjectCreated" Value="对象已创建" />
+        <LocalizationItem Name="ObjectDeleted" Value="对象已删除" />
+        <LocalizationItem Name="RemovedFromCollection" Value="已从集合中移除" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.Persistent.Base.SecurityPermissionPolicy">
+        <LocalizationItem Name="AllowAllByDefault" Value="默认全部允许" />
+        <LocalizationItem Name="DenyAllByDefault" Value="默认全部拒绝" />
+        <LocalizationItem Name="ReadOnlyAllByDefault" Value="默认全部只读" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.Persistent.Base.SecurityPermissionState">
+        <LocalizationItem Name="Allow" Value="允许" />
+        <LocalizationItem Name="Deny" Value="拒绝" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.Persistent.Validation.CriteriaEvaluationBehavior">
+        <LocalizationItem Name="BeforeTransaction" Value="事务前验证" />
+        <LocalizationItem Name="InTransaction" Value="事务中验证" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.Persistent.Validation.StringComparisonType">
+        <LocalizationItem Name="Contains" Value="包含" />
+        <LocalizationItem Name="EndsWith" Value="结尾是" />
+        <LocalizationItem Name="Equals" Value="等于" />
+        <LocalizationItem Name="NotEquals" Value="不等于" />
+        <LocalizationItem Name="StartsWith" Value="开头是" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.Persistent.Validation.ValidationOutcome">
+        <LocalizationItem Name="Error" Value="错误" />
+        <LocalizationItem Name="Information" Value="信息" />
+        <LocalizationItem Name="Skipped" Value="已跳过" />
+        <LocalizationItem Name="Valid" Value="有效" />
+        <LocalizationItem Name="Warning" Value="警告" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.Persistent.Validation.ValidationResultType">
+        <LocalizationItem Name="Error" Value="错误" />
+        <LocalizationItem Name="Information" Value="信息" />
+        <LocalizationItem Name="Warning" Value="警告" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.Persistent.Validation.ValueComparisonType">
+        <LocalizationItem Name="Equals" Value="等于" />
+        <LocalizationItem Name="GreaterThan" Value="大于" />
+        <LocalizationItem Name="GreaterThanOrEqual" Value="大于等于" />
+        <LocalizationItem Name="LessThan" Value="小于" />
+        <LocalizationItem Name="LessThanOrEqual" Value="小于等于" />
+        <LocalizationItem Name="NotEquals" Value="不等于" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+    <LocalizationGroup Name="Exceptions">
+      <LocalizationItem Name="CanNotDeleteObject" Value="由于安全限制，您无法删除 '{0}' 对象." />
+      <LocalizationItem Name="CanNotSaveObject" Value="由于安全限制，您无法保存 '{0}' 对象." />
+      <LocalizationItem Name="ReportsDisplayNameIsEmptyErrorMessage" Value="您正尝试保存一个 &quot;DisplayName&quot; 属性为空或为默认值的报表.请在保存报表之前定义此属性" />
+      <LocalizationGroup Name="SystemExceptions">
+        <LocalizationItem Name="ActionMethodShouldBeNonGeneric" Value="Unable to create action for method {0} of class {1}. Action method should be non-generic." />
+      </LocalizationGroup>
+    </LocalizationGroup>
+    <LocalizationGroup Name="NotificationsPostponeTimesList">
+      <LocalizationItem Name="AtStartTime" Value="0 分钟" />
+      <LocalizationItem Name="EightHours" Value="8 小时" />
+      <LocalizationItem Name="ElevenHours" Value="11 小时" />
+      <LocalizationItem Name="FifteenMinutes" Value="15 分钟" />
+      <LocalizationItem Name="FiveHours" Value="5 小时" />
+      <LocalizationItem Name="FiveMinutes" Value="5 分钟" />
+      <LocalizationItem Name="FourDays" Value="4 天" />
+      <LocalizationItem Name="FourHours" Value="4 小时" />
+      <LocalizationItem Name="HalfDay" Value="0,5 天" />
+      <LocalizationItem Name="NineHours" Value="9 小时" />
+      <LocalizationItem Name="OneDay" Value="1 天" />
+      <LocalizationItem Name="OneHour" Value="1 小时" />
+      <LocalizationItem Name="OneWeek" Value="1 周" />
+      <LocalizationItem Name="SevenHours" Value="7 小时" />
+      <LocalizationItem Name="SixHours" Value="6 小时" />
+      <LocalizationItem Name="TenHours" Value="10 小时" />
+      <LocalizationItem Name="TenMinutes" Value="10 分钟" />
+      <LocalizationItem Name="ThirtyMinutes" Value="30 分钟" />
+      <LocalizationItem Name="ThreeDays" Value="3 天" />
+      <LocalizationItem Name="ThreeHours" Value="3 天" />
+      <LocalizationItem Name="TwoDays" Value="2 天" />
+      <LocalizationItem Name="TwoHours" Value="2 天" />
+      <LocalizationItem Name="TwoWeeks" Value="2 周" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Security">
+      <LocalizationGroup Name="Account">
+        <LocalizationItem Name="UserName" Value="用户名" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+    <LocalizationGroup Name="VisualComponents">
+      <LocalizationGroup Name="GridContextMenu">
+        <LocalizationItem Name="MenuColumnAutoFilterRowHide" Value="隐藏自动筛选行" />
+        <LocalizationItem Name="MenuColumnAutoFilterRowShow" Value="显示自动筛选行" />
+        <LocalizationItem Name="MenuColumnChooser" Value="选择显示列" />
+        <LocalizationItem Name="MenuColumnClearFilter" Value="清除筛选条件" />
+        <LocalizationItem Name="MenuColumnClearSorting" Value="清除排序" />
+        <LocalizationItem Name="MenuColumnFilterEditor" Value="编辑筛选条件..." />
+        <LocalizationItem Name="MenuColumnFindFilterHide" Value="隐藏查找面板" />
+        <LocalizationItem Name="MenuColumnFindFilterShow" Value="显示查找面板" />
+        <LocalizationItem Name="MenuColumnGroup" Value="按此列分组" />
+        <LocalizationItem Name="MenuColumnRemoveColumn" Value="隐藏此列" />
+        <LocalizationItem Name="MenuColumnSortAscending" Value="升序排列" />
+        <LocalizationItem Name="MenuColumnSortDescending" Value="降序排列" />
+        <LocalizationItem Name="MenuColumnUngroup" Value="取消分组" />
+        <LocalizationItem Name="MenuFooterHide" Value="隐藏页脚" />
+        <LocalizationItem Name="MenuFooterShow" Value="显示页脚" />
+        <LocalizationItem Name="MenuGroupPanelClearGrouping" Value="清除分组" />
+        <LocalizationItem Name="MenuGroupPanelFullCollapse" Value="全部折叠" />
+        <LocalizationItem Name="MenuGroupPanelFullExpand" Value="全部展开" />
+        <LocalizationItem Name="MenuGroupPanelHide" Value="隐藏分组框" />
+        <LocalizationItem Name="MenuGroupPanelShow" Value="隐藏分组框" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="Header">
+        <LocalizationItem Name="HideNavigationPane" Value="隐藏导航栏" />
+        <LocalizationItem Name="Settings" Value="设置" />
+        <LocalizationItem Name="ShowNavigationPane" Value="显示导航栏" />
+        <LocalizationItem Name="SkipToMainContent" Value="跳至主要内容" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="ImageEdit">
+        <LocalizationItem Name="AddImage" Value="添加图片" />
+        <LocalizationItem Name="Cancel" Value="取消" />
+        <LocalizationItem Name="Change" Value="更改" />
+        <LocalizationItem Name="ChangeImage" Value="更换图片" />
+        <LocalizationItem Name="Remove" Value="移除" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="LoadingIndicator">
+        <LocalizationItem Name="Loading" Value="加载中..." />
+      </LocalizationGroup>
+      <LocalizationGroup Name="ObjectModel">
+        <LocalizationItem Name="Caption" Value="对象模型" />
+        <LocalizationItem Name="Customize" Value="自定义" />
+        <LocalizationItem Name="SearchPrompt" Value="输入要搜索的文本..." />
+      </LocalizationGroup>
+      <LocalizationGroup Name="SchedulerRecurrenceInfoPropertyEditor">
+        <LocalizationItem Name="DoesNotRepeat" Value="不重复" />
+        <LocalizationItem Name="OccursPrefix" Value="发生频率" />
+        <LocalizationItem Name="RepeatsDaily" Value="每天重复" />
+        <LocalizationItem Name="RepeatsMonthly" Value="每月重复" />
+        <LocalizationItem Name="RepeatsWeekly" Value="每周重复" />
+        <LocalizationItem Name="RepeatsYearly" Value="每年重复" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+  </Localization>
   <NavigationItems NavigationStyle="Accordion">
+    <Items>
+      <Item Id="Default" Caption="系统管理" Index="0" ImageName="ScatterChartLabelOptions">
+        <Items>
+          <Item Id="ApplicationUser_ListView" Caption="用户" />
+          <Item Id="Event_ListView" Caption="日程安排" />
+          <Item Id="MyDetails" Caption="我的信息" />
+          <Item Id="PermissionPolicyRole_ListView" Caption="身份权限" />
+        </Items>
+      </Item>
+      <Item Id="基础数据" Index="1" ImageName="BO_Category">
+        <Items>
+          <Item Id="CangKu_ListView" Caption="仓库管理" Index="0" ImageName="BO_Address" />
+          <Item Id="KuQv_ListView" Caption="库区管理" Index="1" ImageName="TableLayout" />
+          <Item Id="KuWei_ListView" Caption="库位管理" Index="2" ImageName="AutoSize_Fill" />
+          <Item Id="RuKou_ListView" Caption="入口管理" Index="3" ImageName="ArrangeInRows" />
+          <Item Id="ChuKou_ListView" Caption="出口管理" Index="4" ImageName="BO_Vendor" />
+        </Items>
+      </Item>
+      <Item Id="在库管理" Index="2" ImageName="ManageDataSource">
+        <Items>
+          <Item Id="WuLiao_ListView_DaiRu" ObjectKey="" Index="0" ImageName="NewDataSource" ViewId="WuLiao_ListView_DaiRu" IsNewNode="True" />
+          <Item Id="WuLiao_ListView_ZaiKu" ObjectKey="" Index="1" ImageName="Actions_Database" ViewId="WuLiao_ListView_ZaiKu" IsNewNode="True" />
+          <Item Id="WuLiao_ListView_DaiChu" ObjectKey="" Index="2" ImageName="EditConnection" ViewId="WuLiao_ListView_DaiChu" IsNewNode="True" />
+          <Item Id="WuLiao_ListView_YiChu" ObjectKey="" Index="3" ImageName="DeleteDataSource" ViewId="WuLiao_ListView_YiChu" IsNewNode="True" />
+          <Item Id="WuLiao_ListView" Index="4" ImageName="EditDataSource" />
+        </Items>
+      </Item>
+      <Item Id="作业管理" Index="3" ImageName="ProductSpecificationsSummary">
+        <Items>
+          <Item Id="RenWu_ListView_DengDaiZhiXing" ObjectKey="" Index="0" ImageName="NewTask" ViewId="RenWu_ListView_DengDaiZhiXing" IsNewNode="True" />
+          <Item Id="RenWu_ListView_ZhengZaiZhiXing" ObjectKey="" Index="1" ImageName="ProductSpecificationsSummary" ViewId="RenWu_ListView_ZhengZaiZhiXing" IsNewNode="True" />
+          <Item Id="RenWu_ListView" Index="2" ImageName="CustomerProfileReport" />
+        </Items>
+      </Item>
+      <Item Id="Reports" Caption="报表" Index="97" Visible="False" ImageName="Actions_FolderClose">
+        <Items>
+          <Item Id="Dashboards" Caption="仪表盘" />
+          <Item Id="ReportsV2" Caption="报表" />
+        </Items>
+      </Item>
+      <Item Id="State Machine" Caption="状态机" Index="98" ImageName="BO_StateMachine">
+        <Items>
+          <Item Id="XpoStateMachine_ListView" Caption="状态机" />
+        </Items>
+      </Item>
+      <Item Id="统计查询" Index="99" ImageName="Actions_Calendar">
+        <Items>
+          <Item Id="Log_ListView" ImageName="Actions_Calendar" />
+        </Items>
+      </Item>
+    </Items>
   </NavigationItems>
+  <Options UIType="TabbedMDI" RestoreTabbedMdiLayout="True" ShowTabImage="True" />
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="24.2.8.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerBlazorModule" Version="24.2.8.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerModuleBase" Version="24.2.8.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="24.2.8.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DetailView Id="ApplicationUser_DetailView">
+      <Items>
+        <PropertyEditor Id="ChangePasswordOnFirstLogon" Caption="强制修改密码" ToolTip="用户必须在下次登录时更改密码" />
+        <PropertyEditor Id="IsActive" Caption="是否激活" />
+        <PropertyEditor Id="Roles" Caption="角色" />
+        <PropertyEditor Id="UserName" Caption="用户名" />
+      </Items>
+    </DetailView>
+    <ListView Id="ApplicationUser_ListView" Caption="用户">
+      <Columns>
+        <ColumnInfo Id="UserName" Caption="用户名" />
+        <ColumnInfo Id="ChangePasswordOnFirstLogon" Caption="强制修改密码" ToolTip="用户必须在下次登录时更改密码" />
+        <ColumnInfo Id="IsActive" Caption="是否激活" />
+      </Columns>
+    </ListView>
+    <DetailView Id="AuthenticationStandardLogonParameters_Blazor_DetailView" Caption="WMS">
+      <Items>
+        <StaticText Id="LogonText" Text="请在下方输入您的用户名和密码。" />
+        <PropertyEditor Id="Password" Caption="密码" />
+        <PropertyEditor Id="UserName" Caption="用户名" />
+      </Items>
+    </DetailView>
+    <DetailView Id="CangKu_DetailView" Caption="仓库管理" ImageName="BO_Address">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="CangKu" RelativeSize="17.258064516129032" Caption="仓库" />
+            <LayoutGroup Id="XPObject" RelativeSize="82.74193548387096">
+              <LayoutItem Id="Oid" RelativeSize="100" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="KuQvs_Group" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="CangKu_ListView" Caption="仓库管理" ShowAutoFilterRow="True" ImageName="BO_Address" />
+    <DetailView Id="ChuKou_DetailView" Caption="出口管理" ImageName="BO_Vendor">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="ChuKou" Caption="出口管理" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="ChuKou_ListView" Caption="出口管理" ImageName="BO_Vendor" />
+    <DetailView Id="DashboardData_DetailView" Caption="仪表盘数据" />
+    <ListView Id="DashboardData_ListView" Caption="仪表盘">
+      <Columns>
+        <ColumnInfo Id="Title" Caption="标题" />
+      </Columns>
+    </ListView>
+    <DetailView Id="DashboardViewer_DetailView" Caption="仪表盘视图" />
+    <DetailView Id="Event_DetailView" Caption="日程安排">
+      <Items>
+        <PropertyEditor Id="AlarmTime" Caption="提醒时间" />
+        <PropertyEditor Id="AllDay" Caption="全天" />
+        <PropertyEditor Id="Description" Caption="描述" />
+        <PropertyEditor Id="EndOn" Caption="结束" />
+        <PropertyEditor Id="IsPostponed" Caption="已延期" />
+        <PropertyEditor Id="Label" Caption="标签" />
+        <PropertyEditor Id="Location" Caption="位置" />
+        <PropertyEditor Id="NotificationMessage" Caption="通知内容" />
+        <PropertyEditor Id="RecurrenceInfoXml" Caption="重复" />
+        <PropertyEditor Id="RecurrencePattern" Caption="循环模式" />
+        <PropertyEditor Id="ReminderTime" Caption="备忘录" />
+        <PropertyEditor Id="Resources" Caption="重复" />
+        <PropertyEditor Id="StartOn" Caption="开始" />
+        <PropertyEditor Id="Status" Caption="状态" />
+        <PropertyEditor Id="Subject" Caption="标题" />
+      </Items>
+    </DetailView>
+    <ListView Id="Event_ListView" Caption="日程安排" />
+    <ListView Id="Event_Resources_ListView" Caption="重复">
+      <Columns>
+        <ColumnInfo Id="Caption" Caption="标题" />
+        <ColumnInfo Id="Color" Caption="颜色" />
+      </Columns>
+    </ListView>
+    <DetailView Id="KuQv_DetailView" Caption="库区管理" ImageName="TableLayout">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="KuQv" Caption="库区" />
+          </LayoutGroup>
+          <LayoutGroup Id="KuWeis_Group" Caption="库位" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="KuQv_KuWeis_ListView" Caption="库位" />
+    <ListView Id="KuQv_ListView" Caption="仓库管理" ShowAutoFilterRow="True" ImageName="TableLayout" />
+    <DetailView Id="KuWei_DetailView" Caption="库位管理" ImageName="AutoSize_Fill">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="KuWei" Caption="库位" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="KuWei_ListView" Caption="库位管理" ShowAutoFilterRow="True" ImageName="AutoSize_Fill" />
+    <DetailView Id="Log_DetailView" Caption="系统日志" ImageName="Actions_Calendar">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Log" Caption="系统日志" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Log_ListView" Caption="系统日志" ImageName="Actions_Calendar">
+      <Columns>
+        <ColumnInfo Id="Message" Index="3" />
+      </Columns>
+    </ListView>
+    <DetailView Id="NewReportWizardParameters_DetailView" Caption="新建报表向导参数">
+      <Items>
+        <PropertyEditor Id="DataType" Caption="数据类型" />
+        <PropertyEditor Id="DisplayName" Caption="显示名称" />
+        <PropertyEditor Id="ReportType" Caption="报表类型" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="NewReportWizardParameters" Caption="新建报表向导的参数" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="NewReportWizardParameters_ListView" Caption="新建报表向导参数">
+      <Columns>
+        <ColumnInfo Id="DisplayName" Caption="显示名称" />
+        <ColumnInfo Id="ReportType" Caption="报表类型" />
+        <ColumnInfo Id="DataType" Caption="数据类型" />
+      </Columns>
+    </ListView>
+    <ListView Id="PermissionPolicyActionPermissionObject_ListView">
+      <Columns>
+        <ColumnInfo Id="ActionId" Caption="行为ID" />
+        <ColumnInfo Id="Role" Caption="角色" />
+        <ColumnInfo Id="ActionDescriptor" Caption="行为" />
+        <ColumnInfo Id="Category" Caption="分类" />
+        <ColumnInfo Id="Image" Caption="图片" />
+      </Columns>
+    </ListView>
+    <ListView Id="PermissionPolicyNavigationPermissionObject_ListView">
+      <Columns>
+        <ColumnInfo Id="Role" Caption="角色" />
+        <ColumnInfo Id="ItemPath" Caption="导航菜单项" />
+        <ColumnInfo Id="NavigateState" Caption="导航" />
+      </Columns>
+    </ListView>
+    <ListView Id="PermissionPolicyObjectPermissionsObject_ListView">
+      <Columns>
+        <ColumnInfo Id="TypePermissionObject" Caption="类型权限对象" />
+        <ColumnInfo Id="Criteria" Caption="筛选条件" />
+        <ColumnInfo Id="ReadState" Caption="读" />
+        <ColumnInfo Id="WriteState" Caption="写" />
+        <ColumnInfo Id="DeleteState" Caption="删除" />
+      </Columns>
+    </ListView>
+    <DetailView Id="PermissionPolicyRole_DetailView">
+      <Items>
+        <PropertyEditor Id="ActionPermissions" Caption="被禁止的操作" />
+        <PropertyEditor Id="CanEditModel" Caption="允许编辑模型" />
+        <PropertyEditor Id="IsAdministrative" Caption="是否为管理员" />
+        <PropertyEditor Id="Name" Caption="名称" />
+        <PropertyEditor Id="NavigationPermissions" Caption="导航权限" />
+        <PropertyEditor Id="PermissionPolicy" Caption="权限策略" />
+        <PropertyEditor Id="TypePermissions" Caption="类型权限" />
+        <PropertyEditor Id="Users" Caption="用户" />
+      </Items>
+    </DetailView>
+    <ListView Id="PermissionPolicyRole_ListView">
+      <Columns>
+        <ColumnInfo Id="PermissionPolicy" Caption="权限策略" />
+        <ColumnInfo Id="Name" Caption="名称" />
+        <ColumnInfo Id="IsAdministrative" Caption="是否为管理员" />
+        <ColumnInfo Id="CanEditModel" Caption="允许更改模型" />
+      </Columns>
+    </ListView>
+    <ListView Id="PermissionPolicyRole_Users_ListView">
+      <Columns>
+        <ColumnInfo Id="UserName" Caption="用户名" />
+        <ColumnInfo Id="ChangePasswordOnFirstLogon" Caption="强制修改密码" />
+        <ColumnInfo Id="IsActive" Caption="是否激活" />
+      </Columns>
+    </ListView>
+    <ListView Id="PermissionPolicyRoleBase_ActionPermissions_ListView">
+      <Columns>
+        <ColumnInfo Id="ActionId" Caption="行为ID" />
+        <ColumnInfo Id="Role" Caption="角色" />
+        <ColumnInfo Id="ActionDescriptor" Caption="行为" />
+        <ColumnInfo Id="Category" Caption="分类" />
+        <ColumnInfo Id="Image" Caption="图片" />
+      </Columns>
+    </ListView>
+    <ListView Id="PermissionPolicyRoleBase_NavigationPermissions_ListView">
+      <Columns>
+        <ColumnInfo Id="ItemPath" Caption="导航菜单项" />
+        <ColumnInfo Id="NavigateState" Caption="导航" />
+      </Columns>
+    </ListView>
+    <ListView Id="PermissionPolicyRoleBase_TypePermissions_ListView">
+      <Columns>
+        <ColumnInfo Id="Role" Caption="角色" />
+        <ColumnInfo Id="TargetType" Caption="目标类型" />
+        <ColumnInfo Id="ReadState" Caption="读" />
+        <ColumnInfo Id="WriteState" Caption="写" />
+        <ColumnInfo Id="CreateState" Caption="创建" />
+        <ColumnInfo Id="DeleteState" Caption="删除" />
+      </Columns>
+    </ListView>
+    <ListView Id="PermissionPolicyTypePermissionObject_ListView">
+      <Columns>
+        <ColumnInfo Id="Role" Caption="角色" />
+        <ColumnInfo Id="TargetType" Caption="目标类型" />
+        <ColumnInfo Id="ReadState" Caption="读" />
+        <ColumnInfo Id="WriteState" Caption="写" />
+        <ColumnInfo Id="CreateState" Caption="创建" />
+        <ColumnInfo Id="DeleteState" Caption="删除" />
+      </Columns>
+    </ListView>
+    <ListView Id="PermissionPolicyUser_ListView">
+      <Columns>
+        <ColumnInfo Id="UserName" Caption="用户名" />
+        <ColumnInfo Id="ChangePasswordOnFirstLogon" Caption="强制修改密码" />
+        <ColumnInfo Id="IsActive" Caption="是否激活" />
+      </Columns>
+    </ListView>
+    <ListView Id="PermissionPolicyUser_Roles_ListView">
+      <Columns>
+        <ColumnInfo Id="PermissionPolicy" Caption="权限策略" />
+        <ColumnInfo Id="Name" Caption="名称" />
+        <ColumnInfo Id="IsAdministrative" Caption="是否为管理员" />
+        <ColumnInfo Id="CanEditModel" Caption="允许编辑模型" />
+      </Columns>
+    </ListView>
+    <DetailView Id="RenWu_DetailView" Caption="控制作业" ImageName="BO_Task">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RenWu" Caption="控制作业" ImageName="BO_Task" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="RenWu_ListView" ShowAutoFilterRow="True" Caption="历史控制作业" ImageName="CustomerProfileReport">
+      <Columns>
+        <ColumnInfo Id="BeiZhu" Index="-1" />
+        <ColumnInfo Id="ChuangJianShiJian" Index="-1" />
+        <ColumnInfo Id="DaoKuBaohao" Index="-1" />
+        <ColumnInfo Id="DaoKuMuDiHuoWei" Index="-1" />
+        <ColumnInfo Id="DaoKuQiShiHuoWei" Index="-1" />
+        <ColumnInfo Id="JiHuaShiJian" Index="-1" />
+        <ColumnInfo Id="WanChengShiJian" Index="-1" />
+        <ColumnInfo Id="Oid" Index="0" />
+        <ColumnInfo Id="BaoHao" Index="1" />
+        <ColumnInfo Id="KuWei" Index="2" />
+        <ColumnInfo Id="RenWuLeiXing" SortOrder="Ascending" GroupIndex="0" Index="3" />
+        <ColumnInfo Id="RenWuZhuangTai" Index="4" />
+        <ColumnInfo Id="IsDaoKu" Index="5" />
+        <ColumnInfo Id="FaSongShiJian" Index="7" />
+        <ColumnInfo Id="ZhiXingShiJian" Index="8" />
+      </Columns>
+    </ListView>
+    <ListView Id="RenWu_ListView_DengDaiZhiXing" ClassName="WMS.Module.BusinessObjects.ZuoYe.RenWu" ShowAutoFilterRow="True" Caption="等待执行的作业" ImageName="NewTask" Criteria="[RenWuZhuangTai] = ##Enum#RenWuZhuangTai,DengDaiFaSong# Or [RenWuZhuangTai] = ##Enum#RenWuZhuangTai,DengDaiZhiXing#" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="BeiZhu" PropertyName="BeiZhu" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ChuangJianShiJian" PropertyName="ChuangJianShiJian" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="DaoKuBaohao" PropertyName="DaoKuBaohao" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="DaoKuMuDiHuoWei" PropertyName="DaoKuMuDiHuoWei" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="DaoKuQiShiHuoWei" PropertyName="DaoKuQiShiHuoWei" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="JiHuaShiJian" PropertyName="JiHuaShiJian" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="WanChengShiJian" PropertyName="WanChengShiJian" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="RuKouName" PropertyName="RuKouName" SortIndex="0" SortOrder="Ascending" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="BaoHao" PropertyName="BaoHao" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="KuWei" PropertyName="KuWei" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="RenWuLeiXing" PropertyName="RenWuLeiXing" SortOrder="Ascending" GroupIndex="0" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="RenWuZhuangTai" PropertyName="RenWuZhuangTai" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="ChuKouName" PropertyName="ChuKouName" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="IsDaoKu" PropertyName="IsDaoKu" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="FaSongShiJian" PropertyName="FaSongShiJian" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="ZhiXingShiJian" PropertyName="ZhiXingShiJian" Index="8" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="RenWu_ListView_ZhengZaiZhiXing" ClassName="WMS.Module.BusinessObjects.ZuoYe.RenWu" ShowAutoFilterRow="True" Caption="正在执行的作业" ImageName="ProductSpecificationsSummary" Criteria="[RenWuZhuangTai] = ##Enum#RenWuZhuangTai,ZhengZaiZhiXing#" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="BeiZhu" PropertyName="BeiZhu" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ChuangJianShiJian" PropertyName="ChuangJianShiJian" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="DaoKuBaohao" PropertyName="DaoKuBaohao" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="DaoKuMuDiHuoWei" PropertyName="DaoKuMuDiHuoWei" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="DaoKuQiShiHuoWei" PropertyName="DaoKuQiShiHuoWei" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="JiHuaShiJian" PropertyName="JiHuaShiJian" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="WanChengShiJian" PropertyName="WanChengShiJian" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="RuKouName" PropertyName="RuKouName" SortIndex="0" SortOrder="Ascending" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="BaoHao" PropertyName="BaoHao" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="KuWei" PropertyName="KuWei" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="RenWuLeiXing" PropertyName="RenWuLeiXing" SortOrder="Ascending" GroupIndex="0" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="RenWuZhuangTai" PropertyName="RenWuZhuangTai" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="ChuKouName" PropertyName="ChuKouName" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="IsDaoKu" PropertyName="IsDaoKu" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="FaSongShiJian" PropertyName="FaSongShiJian" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="ZhiXingShiJian" PropertyName="ZhiXingShiJian" Index="8" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="ReportDataV2_DetailView" Caption="报表">
+      <Items>
+        <PropertyEditor Id="DataTypeCaption" Caption="数据类型" />
+        <PropertyEditor Id="DisplayName" Caption="显示名称" />
+        <PropertyEditor Id="IsInplaceReport" Caption="是否为就地报表" />
+        <PropertyEditor Id="IsPredefined" Caption="是否为预定义的" />
+        <PropertyEditor Id="ParametersObjectType" Caption="参数对象类型" />
+      </Items>
+    </DetailView>
+    <ListView Id="ReportDataV2_ListView" Caption="报表">
+      <Columns>
+        <ColumnInfo Id="IsInplaceReport" Caption="是否为就地报表" />
+        <ColumnInfo Id="IsPredefined" Caption="是否为预定义的" />
+        <ColumnInfo Id="ParametersObjectType" Caption="参数对象类型" />
+        <ColumnInfo Id="DisplayName" Caption="显示名称" />
+        <ColumnInfo Id="DataTypeCaption" Caption="数据类型" />
+      </Columns>
+    </ListView>
+    <DetailView Id="ReportDesigner_DetailView" Caption="报表" />
+    <DetailView Id="ReportViewer_DetailView" Caption="报表" />
+    <DetailView Id="Resource_DetailView" Caption="重复">
+      <Items>
+        <PropertyEditor Id="Caption" Caption="标题" />
+        <PropertyEditor Id="Color" Caption="颜色" />
+        <PropertyEditor Id="Events" Caption="日程" />
+      </Items>
+    </DetailView>
+    <ListView Id="Resource_ListView" Caption="重复">
+      <Columns>
+        <ColumnInfo Id="Caption" Caption="标题" />
+        <ColumnInfo Id="Color" Caption="颜色" />
+      </Columns>
+    </ListView>
+    <DetailView Id="RuKou_DetailView" Caption="入口管理" ImageName="ArrangeInRows">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuKou" Caption="入口管理" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="RuKou_ListView" Caption="入口管理" ImageName="ArrangeInRows" />
+    <DetailView Id="WuLiao_DetailView" Caption="物料库存" ImageName="UpdateDataExtract">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100" ImageName="UpdateDataExtract">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100" ImageName="UpdateDataExtract">
+            <LayoutGroup Id="WuLiao" RelativeSize="35" Caption="物料库存" ImageName="UpdateDataExtract">
+              <LayoutGroup Id="WuLiao_col1" RelativeSize="49.936143039591315">
+                <LayoutItem Id="CunChuZhuangTai" RelativeSize="17.391304347826086" />
+                <LayoutItem Id="BaoHao" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="KuWei" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="WuLiaoName" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="MaKouName" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="KuCunCount" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="BeiZhu" RelativeSize="17.391304347826086" />
+              </LayoutGroup>
+              <LayoutGroup Id="WuLiao_col2" RelativeSize="50.063856960408685">
+                <LayoutItem Id="RuKuTime" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="ChuKuTime" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="XiangDaoNum" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="Lie" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="Pai" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="Ceng" RelativeSize="17.391304347826086" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="XPObject" Caption="Oid" RelativeSize="65">
+              <LayoutItem Id="Oid" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="WuLiao_ListView" ShowAutoFilterRow="True" Caption="库存账本" ImageName="EditDataSource">
+      <Columns>
+        <ColumnInfo Id="BeiZhu" Index="-1" />
+        <ColumnInfo Id="ChuKuTime" Index="-1" />
+        <ColumnInfo Id="KuCunCount" Index="-1" />
+        <ColumnInfo Id="MaKouName" Index="-1" />
+        <ColumnInfo Id="Time" Index="-1" />
+        <ColumnInfo Id="ZhixingChuku" Index="-1" />
+        <ColumnInfo Id="CunChuZhuangTai" Index="0" />
+        <ColumnInfo Id="WuLiaoName" Index="1" />
+        <ColumnInfo Id="XiangDaoNum" Index="4" />
+        <ColumnInfo Id="Lie" Index="5" />
+        <ColumnInfo Id="Pai" Index="6" />
+        <ColumnInfo Id="Ceng" Index="7" />
+        <ColumnInfo Id="RuKuTime" Index="8" />
+      </Columns>
+    </ListView>
+    <ListView Id="WuLiao_ListView_DaiChu" ClassName="WMS.Module.BusinessObjects.KuCun.WuLiao" ShowAutoFilterRow="True" Caption="待出物资" ImageName="EditConnection" Criteria="[CunChuZhuangTai] = ##Enum#CunChuZhuangTai,DengDaiChuKu# Or [CunChuZhuangTai] = ##Enum#CunChuZhuangTai,ZhengZaiChuKu#" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="BeiZhu" PropertyName="BeiZhu" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ChuKuTime" PropertyName="ChuKuTime" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="KuCunCount" PropertyName="KuCunCount" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="MaKouName" PropertyName="MaKouName" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Time" PropertyName="Time" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ZhixingChuku" PropertyName="ZhixingChuku" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="CunChuZhuangTai" PropertyName="CunChuZhuangTai" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="WuLiaoName" PropertyName="WuLiaoName" SortIndex="0" SortOrder="Ascending" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="BaoHao" PropertyName="BaoHao" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="KuWei" PropertyName="KuWei" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="XiangDaoNum" PropertyName="XiangDaoNum" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="ChuKouName" PropertyName="ChuKouName" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Lie" PropertyName="Lie" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Pai" PropertyName="Pai" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Ceng" PropertyName="Ceng" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="RuKuTime" PropertyName="RuKuTime" Index="8" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="WuLiao_ListView_DaiRu" ClassName="WMS.Module.BusinessObjects.KuCun.WuLiao" ShowAutoFilterRow="True" Caption="待入物资" ImageName="NewDataSource" Criteria="[CunChuZhuangTai] = ##Enum#CunChuZhuangTai,DengDaiRuKu# Or [CunChuZhuangTai] = ##Enum#CunChuZhuangTai,ZhengZaiRuKu#" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="BeiZhu" PropertyName="BeiZhu" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ChuKuTime" PropertyName="ChuKuTime" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="KuCunCount" PropertyName="KuCunCount" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="MaKouName" PropertyName="MaKouName" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Time" PropertyName="Time" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ZhixingChuku" PropertyName="ZhixingChuku" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="CunChuZhuangTai" PropertyName="CunChuZhuangTai" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="WuLiaoName" PropertyName="WuLiaoName" SortIndex="0" SortOrder="Ascending" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="BaoHao" PropertyName="BaoHao" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="KuWei" PropertyName="KuWei" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="XiangDaoNum" PropertyName="XiangDaoNum" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="ChuKouName" PropertyName="ChuKouName" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Lie" PropertyName="Lie" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Pai" PropertyName="Pai" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Ceng" PropertyName="Ceng" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="RuKuTime" PropertyName="RuKuTime" Index="8" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="WuLiao_ListView_YiChu" ClassName="WMS.Module.BusinessObjects.KuCun.WuLiao" ShowAutoFilterRow="True" Caption="已出物资" ImageName="DeleteDataSource" Criteria="[CunChuZhuangTai] = ##Enum#CunChuZhuangTai,ChuKuWanCheng#" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="BeiZhu" PropertyName="BeiZhu" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ChuKuTime" PropertyName="ChuKuTime" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="KuCunCount" PropertyName="KuCunCount" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="MaKouName" PropertyName="MaKouName" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Time" PropertyName="Time" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ZhixingChuku" PropertyName="ZhixingChuku" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="CunChuZhuangTai" PropertyName="CunChuZhuangTai" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="WuLiaoName" PropertyName="WuLiaoName" SortIndex="0" SortOrder="Ascending" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="BaoHao" PropertyName="BaoHao" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="KuWei" PropertyName="KuWei" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="XiangDaoNum" PropertyName="XiangDaoNum" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="ChuKouName" PropertyName="ChuKouName" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Lie" PropertyName="Lie" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Pai" PropertyName="Pai" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Ceng" PropertyName="Ceng" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="RuKuTime" PropertyName="RuKuTime" Index="8" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="WuLiao_ListView_ZaiKu" ClassName="WMS.Module.BusinessObjects.KuCun.WuLiao" ShowAutoFilterRow="True" Caption="在库物资" ImageName="Actions_Database" Criteria="[CunChuZhuangTai] = ##Enum#CunChuZhuangTai,RuKuWanCheng#" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="BeiZhu" PropertyName="BeiZhu" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ChuKuTime" PropertyName="ChuKuTime" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="KuCunCount" PropertyName="KuCunCount" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="MaKouName" PropertyName="MaKouName" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Time" PropertyName="Time" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ZhixingChuku" PropertyName="ZhixingChuku" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="CunChuZhuangTai" PropertyName="CunChuZhuangTai" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="WuLiaoName" PropertyName="WuLiaoName" SortIndex="0" SortOrder="Ascending" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="BaoHao" PropertyName="BaoHao" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="KuWei" PropertyName="KuWei" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="XiangDaoNum" PropertyName="XiangDaoNum" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="ChuKouName" PropertyName="ChuKouName" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Lie" PropertyName="Lie" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Pai" PropertyName="Pai" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Ceng" PropertyName="Ceng" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="RuKuTime" PropertyName="RuKuTime" Index="8" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="XpoState_Appearance_ListView" Caption="外观">
+      <Columns>
+        <ColumnInfo Id="AppearanceItemType" Caption="外观项目类型" />
+        <ColumnInfo Id="Context" Caption="作用范围" />
+        <ColumnInfo Id="TargetItems" Caption="目标项" />
+        <ColumnInfo Id="Priority" Caption="优先级" />
+        <ColumnInfo Id="FontColor" Caption="字体颜色" />
+        <ColumnInfo Id="BackColor" Caption="背景颜色" />
+        <ColumnInfo Id="FontStyle" Caption="字体样式" />
+        <ColumnInfo Id="Enabled" Caption="启用" />
+        <ColumnInfo Id="Visibility" Caption="可见性" />
+      </Columns>
+    </ListView>
+    <DetailView Id="XpoState_DetailView" Caption="状态">
+      <Items>
+        <PropertyEditor Id="Appearance" Caption="外观" />
+        <PropertyEditor Id="Caption" Caption="标题" />
+        <PropertyEditor Id="Marker" Caption="状态标记" />
+        <PropertyEditor Id="TargetObjectCriteria" Caption="目标对象筛选条件" />
+        <PropertyEditor Id="Transitions" Caption="状态转换" />
+      </Items>
+    </DetailView>
+    <ListView Id="XpoState_ListView" Caption="状态">
+      <Columns>
+        <ColumnInfo Id="TargetObjectCriteria" Caption="目标对象筛选条件" />
+        <ColumnInfo Id="Caption" Caption="标题" />
+        <ColumnInfo Id="StateMachine" Caption="状态机" />
+        <ColumnInfo Id="Marker" Caption="状态标记" />
+      </Columns>
+    </ListView>
+    <ListView Id="XpoState_LookupListView" Caption="状态" />
+    <ListView Id="XpoState_Transitions_ListView" Caption="状态转换">
+      <Columns>
+        <ColumnInfo Id="SourceState" Caption="源状态" />
+        <ColumnInfo Id="Caption" Caption="标题" />
+        <ColumnInfo Id="TargetState" Caption="目标状态" />
+        <ColumnInfo Id="Index" Caption="顺序" />
+        <ColumnInfo Id="SaveAndCloseView" Caption="保存并关闭视图" />
+      </Columns>
+    </ListView>
+    <DetailView Id="XpoStateAppearance_DetailView" Caption="外观">
+      <Items>
+        <PropertyEditor Id="AppearanceItemType" Caption="外观项目类型" />
+        <PropertyEditor Id="BackColor" Caption="背景颜色" />
+        <PropertyEditor Id="Context" Caption="作用范围" />
+        <PropertyEditor Id="Enabled" Caption="启用" />
+        <PropertyEditor Id="FontColor" Caption="字体颜色" />
+        <PropertyEditor Id="FontStyle" Caption="字体样式" />
+        <PropertyEditor Id="Priority" Caption="优先级" />
+        <PropertyEditor Id="TargetItems" Caption="目标项" />
+        <PropertyEditor Id="Visibility" Caption="可见性" />
+      </Items>
+    </DetailView>
+    <ListView Id="XpoStateAppearance_ListView" Caption="外观">
+      <Columns>
+        <ColumnInfo Id="AppearanceItemType" Caption="外观项目类型" />
+        <ColumnInfo Id="Context" Caption="作用范围" />
+        <ColumnInfo Id="TargetItems" Caption="目标项" />
+        <ColumnInfo Id="Priority" Caption="优先级" />
+        <ColumnInfo Id="FontColor" Caption="字体颜色" />
+        <ColumnInfo Id="BackColor" Caption="背景颜色" />
+        <ColumnInfo Id="FontStyle" Caption="字体样式" />
+        <ColumnInfo Id="Enabled" Caption="启用" />
+        <ColumnInfo Id="Visibility" Caption="可见性" />
+      </Columns>
+    </ListView>
+    <DetailView Id="XpoStateMachine_DetailView" Caption="状态机">
+      <Items>
+        <PropertyEditor Id="Active" Caption="激活" />
+        <PropertyEditor Id="ExpandActionsInDetailView" Caption="在详细视图中展开操作" />
+        <PropertyEditor Id="Name" Caption="名称" />
+        <PropertyEditor Id="StartState" Caption="初始状态" />
+        <PropertyEditor Id="StatePropertyName" Caption="状态属性名" />
+        <PropertyEditor Id="States" Caption="状态" />
+        <PropertyEditor Id="TargetObjectType" Caption="目标对象类型" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="States_Group" Caption="状态" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="XpoStateMachine_ListView" Caption="状态机">
+      <Columns>
+        <ColumnInfo Id="Name" Caption="名称" />
+        <ColumnInfo Id="Active" Caption="激活" />
+        <ColumnInfo Id="TargetObjectType" Caption="目标对象类型" />
+        <ColumnInfo Id="StatePropertyName" Caption="状态属性名" />
+        <ColumnInfo Id="StartState" Caption="初始状态" />
+        <ColumnInfo Id="ExpandActionsInDetailView" Caption="在详细视图中展开操作" />
+      </Columns>
+    </ListView>
+    <ListView Id="XpoStateMachine_States_ListView" Caption="状态">
+      <Columns>
+        <ColumnInfo Id="StateMachine" Caption="状态机" />
+        <ColumnInfo Id="TargetObjectCriteria" Caption="目标对象条件" />
+        <ColumnInfo Id="Caption" Caption="标题" />
+        <ColumnInfo Id="Marker" Caption="状态标记" />
+      </Columns>
+    </ListView>
+    <DetailView Id="XpoTransition_DetailView" Caption="状态转换">
+      <Items>
+        <PropertyEditor Id="Caption" Caption="标题" />
+        <PropertyEditor Id="Index" Caption="顺序" />
+        <PropertyEditor Id="SaveAndCloseView" Caption="保存并关闭视图" />
+        <PropertyEditor Id="TargetState" Caption="目标状态" />
+      </Items>
+    </DetailView>
+    <ListView Id="XpoTransition_ListView" Caption="状态转换">
+      <Columns>
+        <ColumnInfo Id="Caption" Caption="标题" />
+        <ColumnInfo Id="SourceState" Caption="源状态" />
+        <ColumnInfo Id="TargetState" Caption="目标状态" />
+        <ColumnInfo Id="Index" Caption="顺序" />
+        <ColumnInfo Id="SaveAndCloseView" Caption="保存并关闭视图" />
+      </Columns>
+    </ListView>
+  </Views>
 </Application>
