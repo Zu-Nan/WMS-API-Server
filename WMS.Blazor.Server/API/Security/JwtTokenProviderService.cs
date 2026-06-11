@@ -8,6 +8,7 @@ using DevExpress.ExpressApp.Security.Authentication.ClientServer;
 using Microsoft.IdentityModel.Tokens;
 
 namespace WMS.WebApi.JWT;
+//生成JWT令牌
 
 public class JwtTokenProviderService : IAuthenticationTokenProvider {
     readonly SignInManager signInManager;

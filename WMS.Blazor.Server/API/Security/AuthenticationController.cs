@@ -10,6 +10,7 @@ namespace WMS.WebApi.JWT;
 [ApiController]
 [Route("api/[controller]")]
 // This is a JWT authentication service sample.
+//用于返回令牌数据
 public class AuthenticationController : ControllerBase {
     readonly IAuthenticationTokenProvider tokenProvider;
     public AuthenticationController(IAuthenticationTokenProvider tokenProvider) {
