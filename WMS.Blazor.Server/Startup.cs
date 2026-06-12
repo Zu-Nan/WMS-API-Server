@@ -18,6 +18,9 @@ using DevExpress.ExpressApp.WebApi.Services;
 using WMS.WebApi.JWT;
 using DevExpress.ExpressApp.Security.Authentication;
 using DevExpress.ExpressApp.Security.Authentication.ClientServer;
+using WMS.Module.BusinessObjects.KuCun;
+using WMS.Module.BusinessObjects.ZuoYe;
+using WMS.Module.BusinessObjects.TongJi;
 
 namespace WMS.Blazor.Server;
 
@@ -46,7 +49,9 @@ public class Startup {
 
                 webApiBuilder.ConfigureOptions(options => {
                     // Make your business objects available in the Web API and generate the GET, POST, PUT, and DELETE HTTP methods for it.
-                    // options.BusinessObject<YourBusinessObject>();
+                    options.BusinessObject<WuLiao>();
+                    options.BusinessObject<RenWu>();
+                    options.BusinessObject<Log>();
                 });
             });
 
