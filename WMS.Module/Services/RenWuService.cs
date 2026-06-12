@@ -19,14 +19,12 @@ namespace WMS.Module.Services
         //任务完成
         public void WanCheng(RenWu renWu)
         {
-            using var os=objectSpaceFactory.CreateObjectSpace(typeof(RenWu));
             using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
 
             renWu.WanChengShiJian=DateTime.Now;
             renWu.RenWuZhuangTai=RenWuZhuangTai.ZiDongWanCheng;
-            os.CommitChanges();
 
-            LogHelper.WriteMessage(logSpace,"RenWuService.WanCheng",$"任务已完成,Oid={renWu.Oid},包号={renWu.BaoHao}");
+            LogHelper.WriteMessage(logSpace,"RenWuService.WanCheng",$"{renWu.RenWuLeiXing}已完成,Oid={renWu.Oid},包号={renWu.BaoHao}");
         }
         
         //任务撤销

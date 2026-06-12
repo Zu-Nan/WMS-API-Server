@@ -42,14 +42,15 @@ namespace WMS.Blazor.Server.Controllers
                 {
                     wlService.RuKuWanCheng(renwu);
                     kwService.RuKuWanCheng(renwu);
-                    rwService.WanCheng(renwu);
                 }
                 else//出库任务
                 {
                     wlService.ChuKuWanCheng(renwu);
                     kwService.ChuKuWanCheng(renwu);
-                    rwService.WanCheng(renwu);
                 }
+
+                rwService.WanCheng(renwu);
+                os.CommitChanges();
 
                 return Ok(new{success=true,message="任务已完成"});
             }

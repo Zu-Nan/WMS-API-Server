@@ -44,7 +44,6 @@ namespace WMS.Module.Services
             kuWei.IsEmpty=false;
             kuWei.BaoHao=renWu.BaoHao;
             os.CommitChanges();
-
         }
 
         //出库完成
