@@ -30,12 +30,9 @@ namespace WMS.Module.Services
         //任务撤销
         public void CheXiao(RenWu renWu)
         {
-            using var os=objectSpaceFactory.CreateObjectSpace(typeof(RenWu));
             using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
 
-           
             renWu.RenWuZhuangTai=RenWuZhuangTai.RenWuCheXiao;
-            os.CommitChanges();
 
             LogHelper.WriteMessage(logSpace,"RenWuService.CheXiao",$"任务已撤销,Oid={renWu.Oid},包号={renWu.BaoHao}");
         }
@@ -65,9 +62,11 @@ namespace WMS.Module.Services
             using var os=objectSpaceFactory.CreateObjectSpace(typeof(RenWu));
             using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
 
+            var kuwei=os.GetObjectByKey<KuWei>(kuWei.Oid);
+
             //根据包号倒序查任务
             RenWu renWu=os.GetObjectsQuery<RenWu>()
-            .Where(x=>x.BaoHao==ruKou.BaoHao)
+            .Where(x=>x.BaoHao==ruKou.BaoHao && x.RenWuZhuangTai==RenWuZhuangTai.DengDaiFaSong)
             .OrderByDescending(x=>x.Oid)
             .FirstOrDefault();
 
@@ -79,7 +78,7 @@ namespace WMS.Module.Services
             renWu.RenWuZhuangTai=RenWuZhuangTai.ZhengZaiZhiXing;
             renWu.ZhiXingShiJian=DateTime.Now;
             renWu.FaSongShiJian=DateTime.Now;
-            renWu.KuWei=kuWei;
+            renWu.KuWei=kuwei;
             os.CommitChanges();
 
             LogHelper.WriteMessage(logSpace,"RenWuService.ZhiXing",$"入库任务已执行,Oid={renWu.Oid},包号={renWu.BaoHao}");
@@ -94,12 +93,13 @@ namespace WMS.Module.Services
             renwu.KuWei=wuLiao.KuWei;
             renwu.RenWuZhuangTai=RenWuZhuangTai.ZhengZaiZhiXing;
             renwu.RenWuLeiXing=RenWuLeiXing.ChuKuRenWu;
+            renwu.RuKouName = wuLiao.MaKouName;
             renwu.ChuKouName=wuLiao.ChuKouName;
             renwu.JiHuaShiJian=DateTime.Now.AddMinutes(10);
             renwu.FaSongShiJian=DateTime.Now;
             renwu.ZhiXingShiJian=DateTime.Now;
             renwu.ChuangJianShiJian=DateTime.Now;
-            objectSpace.CommitChanges();
+            //objectSpace.CommitChanges();
 
             LogHelper.WriteMessage(objectSpace,"RenWuService.XiaFaChuKuRenWu",$"下发出库任务,Oid={renwu.Oid},包号={renwu.BaoHao}");
         }

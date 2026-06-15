@@ -2,6 +2,7 @@
 using WMS.Module.BusinessObjects.JiChuDate;
 using WMS.Module.BusinessObjects.ZuoYe;
 using WMS.Module.BusinessObjects.TongJi;
+using WMS.Module.BusinessObjects.KuCun;
 
 namespace WMS.Module.Services
 {
@@ -28,6 +29,7 @@ namespace WMS.Module.Services
             }
 
             kuWei.IsLock=true;
+            os.CommitChanges();
 
             LogHelper.WriteMessage(logSpace,"KuWeiService.ZhiXing",$"分配货位,货位编号={kuWei.KuWeiNum}");  
             return kuWei;
@@ -84,6 +86,13 @@ namespace WMS.Module.Services
 
             kuWei.IsLock=false;
             os.CommitChanges();
+        }
+        
+        //下发出库任务
+        public static void XiaFaChuKuRenWu(IObjectSpace objecctSpace,WuLiao wuLiao)
+        {
+            wuLiao.KuWei.IsLock=true;
+            //objecctSpace.CommitChanges();
         }
 
         //倒库逻辑

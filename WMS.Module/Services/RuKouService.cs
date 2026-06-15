@@ -29,7 +29,6 @@ namespace WMS.Module.Services
         public RuKou ZhiXing(string ruKouNum)
         {
             using var os=objectSpaceFactory.CreateObjectSpace(typeof(RuKou));
-            using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
 
             RuKou ruKou=os.GetObjects<RuKou>().FirstOrDefault(x=>x.RuKouNum==ruKouNum);
             if(ruKou==null)

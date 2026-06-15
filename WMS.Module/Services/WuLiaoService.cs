@@ -35,7 +35,8 @@ namespace WMS.Module.Services
             }
             else//包号均出库完成，可以创建
             {
-                bool allChuKu=existsWuLiaoList.All(x=>x.CunChuZhuangTai==CunChuZhuangTai.ChuKuWanCheng);
+                bool allChuKu=existsWuLiaoList.All(x=>x.CunChuZhuangTai==CunChuZhuangTai.ChuKuWanCheng ||
+                                                      x.CunChuZhuangTai==CunChuZhuangTai.RuKuQuXiao);
                 if(allChuKu)
                 {
                     canCreate=true;
@@ -152,33 +153,34 @@ namespace WMS.Module.Services
         //执行入库
         public void ZhiXing(RuKou ruKou,KuWei kuWei)
         {
-                using var os=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
-                using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
+            using var os=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
+
+            var kuwei=os.GetObjectByKey<KuWei>(kuWei.Oid);
     
-                //根据包号倒序查物料
-                WuLiao wuLiao=os.GetObjectsQuery<WuLiao>()
-                .Where(x=>x.BaoHao==ruKou.BaoHao)
-                .OrderByDescending(x=>x.Oid)
-                .FirstOrDefault();
+            //根据包号倒序查物料
+            WuLiao wuLiao=os.GetObjectsQuery<WuLiao>()
+            .Where(x=>x.BaoHao==ruKou.BaoHao)
+            .OrderByDescending(x=>x.Oid)
+            .FirstOrDefault();
 
-                if(wuLiao==null)
-                {
-                    throw new Exception($"未找到物料,包号={ruKou.BaoHao}");
-                }
+            if(wuLiao==null)
+            {
+                throw new Exception($"未找到物料,包号={ruKou.BaoHao}");
+            }
 
-                wuLiao.CunChuZhuangTai=CunChuZhuangTai.ZhengZaiRuKu;
-                wuLiao.KuWei=kuWei;
+            wuLiao.CunChuZhuangTai=CunChuZhuangTai.ZhengZaiRuKu;
+            wuLiao.KuWei=kuwei;
 
-                os.CommitChanges();
+            os.CommitChanges();
         }
 
         //下发出库任务
         public static void XiaFaChuKuRenWu(IObjectSpace objectSpace, WuLiao wuLiao)
         {
             wuLiao.CunChuZhuangTai=CunChuZhuangTai.ZhengZaiChuKu;
-            wuLiao.ChuKouName="1001";
+            wuLiao.ChuKouName="9001";
             wuLiao.ZhixingChuku=true;
-            objectSpace.CommitChanges();
+            //objectSpace.CommitChanges();
         }
     }
 }

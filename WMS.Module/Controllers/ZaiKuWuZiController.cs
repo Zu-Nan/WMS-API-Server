@@ -41,6 +41,9 @@ namespace WMS.Module.Controllers
                 WuLiaoService.XiaFaChuKuRenWu(View.ObjectSpace, wuLiao);
                 //创建出库任务
                 RenWuService.XiaFaChuKuRenWu(View.ObjectSpace,wuLiao);
+                //锁定货位
+                KuWeiService.XiaFaChuKuRenWu(View.ObjectSpace, wuLiao);
+                ObjectSpace.CommitChanges();
             }
 
             View.ObjectSpace.Refresh();
