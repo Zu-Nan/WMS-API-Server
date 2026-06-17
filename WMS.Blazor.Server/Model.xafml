@@ -462,12 +462,51 @@
       </Columns>
     </ListView>
     <DetailView Id="KuQv_DetailView" Caption="库区管理" ImageName="TableLayout">
+      <Items>
+        <KuWeiViewerViewItem Id="KuWeiViewItem" Caption="货位视图" IsNewNode="True" />
+      </Items>
       <Layout>
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="KuQv" Caption="库区" />
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="50.50335570469799">
+            <LayoutGroup Id="KuQv" Caption="库区" RelativeSize="88.03986710963456">
+              <LayoutGroup Id="KuQv_col1" RelativeSize="50">
+                <LayoutItem Id="CangKu" RelativeSize="13.793103448275861" />
+                <LayoutItem Id="KuQvName" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="KuQvNum" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="XiangDaoNum" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="LieCount" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="QishiLie" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="PaiCount" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="QishiPai" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="CengCount" RelativeSize="13.793103448275861" />
+              </LayoutGroup>
+              <LayoutGroup Id="KuQv_col2" RelativeSize="50">
+                <LayoutItem Id="QishiCeng" RelativeSize="13.793103448275861" />
+                <LayoutItem Id="ZidongKuQv" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="ChuKou" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="RuKou" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="Time" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="Lock" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="BeiZhu" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="KuWeiCount" RelativeSize="10.344827586206897" />
+                <LayoutItem Id="KeYongKuWeiCount" RelativeSize="13.793103448275861" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="XPObject" RelativeSize="11.960132890365449">
+              <LayoutItem Id="Oid" RelativeSize="100" />
+            </LayoutGroup>
           </LayoutGroup>
-          <LayoutGroup Id="KuWeis_Group" Caption="库位" />
+          <TabbedGroup Id="Item1" CaptionLocation="Top" Index="2" RelativeSize="45.46979865771812" IsNewNode="True">
+            <LayoutGroup Id="KuWeis_Group" ShowCaption="True" Caption="库位" Index="0" RelativeSize="100" ImageName="TableLayout" IsNewNode="True">
+              <LayoutItem Id="KuWeis" ViewItem="KuWeis" Index="0" RelativeSize="100" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="KuWeiViewItem" Caption="货位视图" IsNewNode="True">
+              <LayoutItem Id="KuWeiViewItem" ViewItem="KuWeiViewItem" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+          <LayoutGroup Id="KuWeis_Group" Caption="库位" Direction="Vertical" Index="2" RelativeSize="45.46979865771812" Removed="True">
+            <LayoutItem Id="KuWeis" RelativeSize="100" />
+          </LayoutGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>
