@@ -1,4 +1,5 @@
-﻿using DevExpress.ExpressApp.Model;
+﻿using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
 
@@ -7,6 +8,7 @@ namespace WMS.Module.BusinessObjects.JiChuDate
 {
     [DefaultClassOptions]
     [NavigationItem("基础数据")]
+    [Appearance("Locked_BlueBackground",Criteria =nameof(Lock)+"=True",TargetItems ="*",BackColor ="LightBlue")]
     //库区管理
     public class KuQv : XPObject
     {

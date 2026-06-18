@@ -1,4 +1,6 @@
-﻿using DevExpress.ExpressApp.DC;
+﻿using DevExpress.CodeParser;
+using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
@@ -8,6 +10,7 @@ namespace WMS.Module.BusinessObjects.JiChuDate
 {
     [DefaultClassOptions]
     [NavigationItem("基础数据")]
+    [Appearance("Locked_BlueBackground", Criteria = nameof(IsLock) + "=True", TargetItems = "*", BackColor = "LightBlue")]
     [XafDefaultProperty(nameof(KuWeiNum))]
     //库位管理
     public class KuWei : XPObject
