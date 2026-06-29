@@ -1,6 +1,7 @@
 ﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.Persistent.Base;
+using WMS.Module.BusinessObjects.JiChuDate;
 using WMS.Module.BusinessObjects.KuCun;
 using WMS.Module.Services;
 
@@ -39,10 +40,13 @@ namespace WMS.Module.Controllers
                 
                 //更新物料信息
                 WuLiaoService.XiaFaChuKuRenWu(View.ObjectSpace, wuLiao);
+                //倒库处理
+                KuWei DaoKuQiShiHuoWei=DaoKuService.DaoKuQiShiHuoWei(View.ObjectSpace,wuLiao.KuWei);
+                KuWei DaoKuMuDiHuoWei=DaoKuService.DaoKuMuDiHuoWei(View.ObjectSpace,DaoKuQiShiHuoWei);
                 //创建出库任务
-                RenWuService.XiaFaChuKuRenWu(View.ObjectSpace,wuLiao);
+                RenWuService.XiaFaChuKuRenWu(View.ObjectSpace,wuLiao,DaoKuQiShiHuoWei,DaoKuMuDiHuoWei);
                 //锁定货位
-                KuWeiService.XiaFaChuKuRenWu(View.ObjectSpace, wuLiao);
+                KuWeiService.XiaFaChuKuRenWu(View.ObjectSpace, wuLiao,DaoKuQiShiHuoWei,DaoKuMuDiHuoWei);
                 ObjectSpace.CommitChanges();
             }
 

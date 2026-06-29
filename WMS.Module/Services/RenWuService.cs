@@ -85,7 +85,7 @@ namespace WMS.Module.Services
         }
 
         //下发出库任务
-        public static void XiaFaChuKuRenWu(IObjectSpace objectSpace,WuLiao wuLiao)
+        public static void XiaFaChuKuRenWu(IObjectSpace objectSpace,WuLiao wuLiao,KuWei DaoKuQiShiHuoWei,KuWei DaoKuMuDiHuoWei)
         {
             RenWu renwu=objectSpace.CreateObject<RenWu>();
 
@@ -95,6 +95,8 @@ namespace WMS.Module.Services
             renwu.RenWuLeiXing=RenWuLeiXing.ChuKuRenWu;
             renwu.RuKouName = wuLiao.MaKouName;
             renwu.ChuKouName=wuLiao.ChuKouName;
+            renwu.DaoKuQiShiHuoWei=DaoKuQiShiHuoWei;
+            renwu.DaoKuMuDiHuoWei=DaoKuMuDiHuoWei;
             renwu.JiHuaShiJian=DateTime.Now.AddMinutes(10);
             renwu.FaSongShiJian=DateTime.Now;
             renwu.ZhiXingShiJian=DateTime.Now;

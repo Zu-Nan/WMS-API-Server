@@ -89,16 +89,41 @@ namespace WMS.Module.Services
         }
         
         //下发出库任务
-        public static void XiaFaChuKuRenWu(IObjectSpace objecctSpace,WuLiao wuLiao)
+        public static void XiaFaChuKuRenWu(IObjectSpace objectSpace,WuLiao wuLiao,KuWei DaoKuQiShiHuoWei,KuWei DaoKuMuDiHuoWei)
         {
             wuLiao.KuWei.IsLock=true;
-            //objecctSpace.CommitChanges();
-        }
 
-        //倒库逻辑
-        public void DaoKu(KuWei kuWei)
-        {
-            
-        }
+            if (DaoKuQiShiHuoWei != null)
+            {
+                DaoKuQiShiHuoWei.IsLock=true;
+                DaoKuMuDiHuoWei.IsLock=true;
+            }
+
+            if (DaoKuMuDiHuoWei.Lie == "001")
+            {
+                KuWei waice=objectSpace.GetObjectsQuery<KuWei>()
+                                       .Where(x=>x.XiangDaoNum==DaoKuMuDiHuoWei.XiangDaoNum&&
+                                                 x.Lie=="002"&&
+                                                 x.Pai==DaoKuMuDiHuoWei.Pai&&
+                                                 x.Ceng==DaoKuMuDiHuoWei.Ceng)
+                                       .FirstOrDefault();
+                
+                waice.IsLock=true;
+            }
+            else if(DaoKuMuDiHuoWei.Lie=="004")
+            {
+                KuWei waice=objectSpace.GetObjectsQuery<KuWei>()
+                                       .Where(x=>x.XiangDaoNum==DaoKuMuDiHuoWei.XiangDaoNum&&
+                                                 x.Lie=="003"&&
+                                                 x.Pai==DaoKuMuDiHuoWei.Pai&&
+                                                 x.Ceng==DaoKuMuDiHuoWei.Ceng)
+                                       .FirstOrDefault();
+                
+                waice.IsLock=true;
+            }
+
+            //objecctSpace.CommitChanges();
+        } 
+
     }
 }
