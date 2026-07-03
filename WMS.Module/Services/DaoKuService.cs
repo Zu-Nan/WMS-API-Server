@@ -18,9 +18,9 @@ namespace WMS.Module.Services
             {
                 KuWei waice=objecctSpace.GetObjectsQuery<KuWei>()
                                         .Where(x=>x.Pai==kuwei.Pai&&
-                                                x.Ceng==kuwei.Ceng&&
-                                                x.Lie=="002"&&
-                                                x.XiangDaoNum==kuwei.XiangDaoNum)
+                                                  x.Ceng==kuwei.Ceng&&
+                                                  x.Lie=="002"&&
+                                                  x.XiangDaoNum==kuwei.XiangDaoNum)
                                         .FirstOrDefault();
 
                 if (waice.IsLock)
