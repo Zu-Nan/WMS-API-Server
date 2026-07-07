@@ -1,7 +1,157 @@
-﻿@using WMS.Module.BusinessObjects.JiChuDate
+﻿@namespace WMS.Blazor.Server.Components
+@using DevExpress.ExpressApp
+@using DevExpress.ExpressApp.Blazor
+@using DevExpress.ExpressApp.Blazor.Components
+@using DevExpress.ExpressApp.Editors
+@using DevExpress.Xpo
+@using DevExpress.ExpressApp.Blazor.Services
+@using WMS.Module.BusinessObjects.JiChuDate
+
 <h3>KuWeiView</h3>
+
+
+@foreach (var lieGroup in KuQv.KuWeis.GroupBy(x => x.Lie).OrderBy(x => x.Key))
+{
+    var lie = lieGroup.Key;
+    var kuweiList = lieGroup.ToList();
+
+    <div class="mb-1">
+        @* 图例 *@
+        <div class="legend-bar mb-1">
+            <span class="badge legend-lie">第 @lie 列</span>
+            <span class="badge legend-disabled">禁用货位</span>
+            <span class="badge legend-empty">空货位</span>
+            <span class="badge legend-occupied">有货货位</span>
+            <span class="badge legend-reserve">入库锁定货位</span>
+            <span class="badge legend-lock">出库锁定货位</span>
+            <span class="IchiSetsume">货位说明</span>
+        </div>
+
+    </div>
+
+    <div style="margin-left:-10px;margin-top:40px;margin-bottom:-8px;">
+        @for(int ceng = KuQv.CengCount; ceng >= 1; ceng--)
+        {
+            <div class="Gezi">
+                @for(int pai = 1; pai <= KuQv.PaiCount; pai++)
+                {
+                    var cengCode = ceng.ToString("D3");
+                    var paiCode = pai.ToString("D3");
+                    var kuwei = kuweiList.FirstOrDefault(x => x.Ceng == cengCode && x.Pai == paiCode);
+                    @if (kuwei == null)
+                    {
+                        <div class="cell @GetCellClass(kuwei)"></div>
+                    }
+                    else
+                    {
+                        <div class="cell @GetCellClass(kuwei)"></div>
+                    }
+                }
+            </div>
+        }
+    </div>
+}
+
+<style>
+    .legend-bar .badge {
+        margin-right: 8px;
+        color: #fff;
+        font-size: 14px;
+    }
+
+    .legend-lie {
+        background: #FF8C00
+    }
+
+    .legend-disabled {
+        background: #444444;
+    }
+
+    .legend-empty {
+        background: #fff !important;
+        color: #000 !important;
+        border: 1px solid #ddd !important;
+    }
+
+    .legend-occupied {
+        background: #009E5F;
+    }
+
+    .legend-reserve {
+        background: #0074D9;
+    }
+
+    .legend-lock {
+        background: #E74C3C;
+    }
+
+    .IchiSetsume {
+        font-size: 25px !important;
+        font-weight: bold;
+    }
+
+    .Gezi {
+        display: flex;
+        align-items: center;
+    }
+
+    .cell {
+        width: 24px;
+        height: 24px;
+        border: 1px solid #000;
+        margin: 0px;
+        box-sizing: border-box;
+        flex-shrink: 0;
+    }
+
+    .cell-empty {
+        background: #fff;
+        border: 1px solid #fff
+    }
+
+    .cell-Jinyong {
+        background: #444444
+    }
+
+    .cell-lock-ru {
+        background: #0074D9;
+    }
+
+    .cell-lock-chu {
+        background: #E74C3C;
+    }
+
+    .cell-Youhuo {
+        background: #009E5F;
+    }
+</style>
 
 @code {
     [Parameter,EditorRequired]
-    public KuWei Kuiki{ get; set; }
+    public KuQv KuQv{ get; set; }
+
+    private string GetCellClass(KuWei? kuwei)
+    {
+        //不存在货位
+        if (kuwei == null) return "cell-empty";
+        //禁用货位
+        if (!kuwei.QiYong) return "cell-Jinyong";
+        //任务锁定
+        if (kuwei.IsLock)
+        {
+            //入库锁定
+            if (kuwei.IsEmpty)
+            {
+                return "cell-lock-ru";
+            }
+            else//出库锁定
+            {
+                return "cell-lock-chu";
+            }
+        }
+        //空货位
+        if (kuwei.IsEmpty) return "cell";
+        //有货货位
+        return "cell-Youhuo";
+    }
 }
