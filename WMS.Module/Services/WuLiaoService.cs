@@ -87,11 +87,12 @@ namespace WMS.Module.Services
         //物料出库完成
         public void ChuKuWanCheng(RenWu renWu)
         {
-            using var os=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
+            using var wlos=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
+            using var dkos=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
             using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
 
             //根据包号倒序查物料
-            WuLiao wuLiao=os.GetObjectsQuery<WuLiao>()
+            WuLiao wuLiao=wlos.GetObjectsQuery<WuLiao>()
             .Where(x=>x.BaoHao==renWu.BaoHao)
             .OrderByDescending(x=>x.Oid)
             .FirstOrDefault();
@@ -104,7 +105,18 @@ namespace WMS.Module.Services
             wuLiao.CunChuZhuangTai=CunChuZhuangTai.ChuKuWanCheng;
             wuLiao.ChuKuTime=DateTime.Now;
             wuLiao.KuCunCount=0;
-            os.CommitChanges();
+
+            if (renWu.IsDaoKu == true)
+            {
+                WuLiao dkWuLiao=wlos.GetObjectsQuery<WuLiao>()
+                                    .Where(x=>x.BaoHao==renWu.DaoKuBaohao) 
+                                    .OrderByDescending(x=>x.Oid)
+                                    .FirstOrDefault();
+
+                dkWuLiao.KuWei = wlos.GetObjectByKey<KuWei>(renWu.DaoKuMuDiHuoWei.Oid);
+            }
+            dkos.CommitChanges();
+            wlos.CommitChanges();
         }
 
         //物料入库撤销
@@ -146,6 +158,7 @@ namespace WMS.Module.Services
             }
 
             wuLiao.CunChuZhuangTai=CunChuZhuangTai.RuKuWanCheng;
+            wuLiao.ChuKouName=null;
             wuLiao.ZhixingChuku=false;
             os.CommitChanges();
         }

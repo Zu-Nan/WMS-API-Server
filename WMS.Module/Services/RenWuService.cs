@@ -95,6 +95,11 @@ namespace WMS.Module.Services
             renwu.RenWuLeiXing=RenWuLeiXing.ChuKuRenWu;
             renwu.RuKouName = wuLiao.MaKouName;
             renwu.ChuKouName=wuLiao.ChuKouName;
+            if (DaoKuQiShiHuoWei != null)
+            {
+                renwu.IsDaoKu=true;
+                renwu.DaoKuBaohao=DaoKuQiShiHuoWei.BaoHao;
+            }
             renwu.DaoKuQiShiHuoWei=DaoKuQiShiHuoWei;
             renwu.DaoKuMuDiHuoWei=DaoKuMuDiHuoWei;
             renwu.JiHuaShiJian=DateTime.Now.AddMinutes(10);

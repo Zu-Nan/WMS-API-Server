@@ -23,7 +23,7 @@ namespace WMS.Module.Services
                                                   x.XiangDaoNum==kuwei.XiangDaoNum)
                                         .FirstOrDefault();
 
-                if (waice.IsLock)
+                if (!waice.IsLock&&waice.IsEmpty)
                 {
                     return null;
                 }
@@ -41,7 +41,7 @@ namespace WMS.Module.Services
                                                 x.XiangDaoNum==kuwei.XiangDaoNum)
                                         .FirstOrDefault();
 
-                if (waice.IsLock)
+                if (!waice.IsLock&&waice.IsEmpty)
                 {
                     return null;
                 }
