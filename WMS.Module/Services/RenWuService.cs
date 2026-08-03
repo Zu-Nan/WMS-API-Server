@@ -38,21 +38,19 @@ namespace WMS.Module.Services
         }
 
         //新建任务
-        public void XinJian(WuLiaoHelper rw)
+        public static void XinJian(IObjectSpace os, WuLiaoHelper wl)
         {
-            using var os=objectSpaceFactory.CreateObjectSpace(typeof(RenWu));
-            using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
 
             RenWu renwu=os.CreateObject<RenWu>();
 
-            renwu.BaoHao=rw.BaoHao;
+            renwu.BaoHao=wl.BaoHao;
             renwu.RenWuZhuangTai=RenWuZhuangTai.DengDaiFaSong;
             renwu.RenWuLeiXing=RenWuLeiXing.RuKuRenWu;
-            renwu.RuKouName=rw.RuKouName;
+            renwu.RuKouName=wl.RuKouName;
             renwu.JiHuaShiJian=DateTime.Now.AddMinutes(10);
             renwu.ChuangJianShiJian=DateTime.Now;
-            os.CommitChanges();
-
+            
+            using var logSpace = os.CreateNestedObjectSpace();
             LogHelper.WriteMessage(logSpace,"RenWuService.XinJian",$"新建任务,Oid={renwu.Oid},包号={renwu.BaoHao}");
         }
 

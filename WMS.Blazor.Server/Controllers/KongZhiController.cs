@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WMS.Module;
 using WMS.Module.BusinessObjects.JiChuDate;
+using WMS.Module.BusinessObjects.KuCun;
 using WMS.Module.BusinessObjects.TongJi;
 using WMS.Module.BusinessObjects.ZuoYe;
 using WMS.Module.Services;
@@ -113,13 +114,12 @@ namespace WMS.Blazor.Server.Controllers
         {
             try
             {
-                WuLiaoService wlService=new WuLiaoService(objectSpaceFactory);
-                RenWuService rwService=new RenWuService(objectSpaceFactory);
-                RuKouService rkService=new RuKouService(objectSpaceFactory);
+                using var os=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
 
-                wlService.XinJian(wuliao);
-                rwService.XinJian(wuliao);
-                rkService.XinJian(wuliao);
+                WuLiaoService.XinJian(os,wuliao);
+                RenWuService.XinJian(os,wuliao);
+                RuKouService.XinJian(os,wuliao);
+                os.CommitChanges();
 
                 return Ok(new{success=true,message=$"物资已创建,包号={wuliao.BaoHao}"});
             }

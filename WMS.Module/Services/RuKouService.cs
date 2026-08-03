@@ -14,15 +14,11 @@ namespace WMS.Module.Services
         }
 
         //新建物资
-        public void XinJian(WuLiaoHelper wl)
+        public static void XinJian(IObjectSpace os,WuLiaoHelper wl)
         {
-            using var os=objectSpaceFactory.CreateObjectSpace(typeof(RuKou));
-            using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
-
             RuKou ruKou=os.GetObjects<RuKou>().FirstOrDefault(x=>x.RuKouNum==wl.RuKouName);
             ruKou.BaoHao=wl.BaoHao;
             ruKou.Time=DateTime.Now;
-            os.CommitChanges();
         }
 
         //执行入库

@@ -16,35 +16,17 @@ namespace WMS.Module.Services
         }
 
         //新建物料
-        public void XinJian(WuLiaoHelper wl)
+        public static void XinJian(IObjectSpace os, WuLiaoHelper wl)
         {
-            using var os=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
-            using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
-
+           
             //系统包号不得重复
-            var existsWuLiaoList=os.GetObjectsQuery<WuLiao>()
-            .Where(x=>x.BaoHao==wl.BaoHao)
-            .ToList();
-
-            bool canCreate=false;
-
-            //包号不存在，可以创建
-            if(!existsWuLiaoList.Any())
-            {
-                canCreate=true;
-            }
-            else//包号均出库完成，可以创建
-            {
-                bool allChuKu=existsWuLiaoList.All(x=>x.CunChuZhuangTai==CunChuZhuangTai.ChuKuWanCheng ||
-                                                      x.CunChuZhuangTai==CunChuZhuangTai.RuKuQuXiao);
-                if(allChuKu)
-                {
-                    canCreate=true;
-                }
-            }
+            bool cunzai=os.GetObjectsQuery<WuLiao>()
+            .Any(x=>x.BaoHao==wl.BaoHao &&
+                    x.CunChuZhuangTai!=CunChuZhuangTai.RuKuQuXiao &&
+                    x.CunChuZhuangTai!=CunChuZhuangTai.ChuKuWanCheng);
 
             //不满足条件抛出异常
-            if(!canCreate)
+            if(!cunzai)
             {
                 throw new Exception($"系统包号{wl.BaoHao}已存在");
             }
@@ -56,8 +38,8 @@ namespace WMS.Module.Services
             wuliaos.MaKouName=wl.RuKouName;
             wuliaos.CunChuZhuangTai=CunChuZhuangTai.DengDaiRuKu;
             wuliaos.Time=DateTime.Now;
-            os.CommitChanges();
 
+            using var logSpace = os.CreateNestedObjectSpace();
             LogHelper.WriteMessage(logSpace,"KuCunService.XinJian",$"新建物资成功,包号={wl.BaoHao}");
         }
 
@@ -87,12 +69,12 @@ namespace WMS.Module.Services
         //物料出库完成
         public void ChuKuWanCheng(RenWu renWu)
         {
-            using var wlos=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
+            using var os=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
             using var dkos=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
             using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
 
             //根据包号倒序查物料
-            WuLiao wuLiao=wlos.GetObjectsQuery<WuLiao>()
+            WuLiao wuLiao=os.GetObjectsQuery<WuLiao>()
             .Where(x=>x.BaoHao==renWu.BaoHao)
             .OrderByDescending(x=>x.Oid)
             .FirstOrDefault();
@@ -108,15 +90,15 @@ namespace WMS.Module.Services
 
             if (renWu.IsDaoKu == true)
             {
-                WuLiao dkWuLiao=wlos.GetObjectsQuery<WuLiao>()
+                WuLiao dkWuLiao=os.GetObjectsQuery<WuLiao>()
                                     .Where(x=>x.BaoHao==renWu.DaoKuBaohao) 
                                     .OrderByDescending(x=>x.Oid)
                                     .FirstOrDefault();
 
-                dkWuLiao.KuWei = wlos.GetObjectByKey<KuWei>(renWu.DaoKuMuDiHuoWei.Oid);
+                dkWuLiao.KuWei = os.GetObjectByKey<KuWei>(renWu.DaoKuMuDiHuoWei.Oid);
             }
             dkos.CommitChanges();
-            wlos.CommitChanges();
+            os.CommitChanges();
         }
 
         //物料入库撤销
