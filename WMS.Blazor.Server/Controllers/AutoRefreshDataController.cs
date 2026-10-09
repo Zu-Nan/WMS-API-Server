@@ -18,7 +18,7 @@ namespace WMS.Blazor.Server.Controllers
             _refreshTimer.Start();
         }
 
-        private void OnTImerElapsed(object sender, ElapsedEventArgs e)
+        private void OnTImerElapsed(object sender, ElapsedEventArgs e) 
         {
             if(Application is BlazorApplication blazorApp && View != null && !View.IsDisposed)
             {

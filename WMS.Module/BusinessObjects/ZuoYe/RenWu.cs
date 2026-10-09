@@ -68,30 +68,6 @@ namespace WMS.Module.BusinessObjects.ZuoYe
             set => SetPropertyValue(nameof(IsDaoKu), ref _isDaoKu, value);
         }
 
-        private string _daoKuBaohao;
-        [DisplayName("倒库包号")]
-        public string DaoKuBaohao
-        {
-            get => _daoKuBaohao;
-            set => SetPropertyValue(nameof(DaoKuBaohao), ref _daoKuBaohao, value);
-        }
-
-        private KuWei _daoKuQiShiHuoWei;
-        [DisplayName("倒库起始货位")]
-        public KuWei DaoKuQiShiHuoWei
-        {
-            get => _daoKuQiShiHuoWei;
-            set => SetPropertyValue(nameof(DaoKuQiShiHuoWei), ref _daoKuQiShiHuoWei, value);
-        }
-
-        private KuWei _daoKuMuDiHuoWei;
-        [DisplayName("倒库目的货位")]
-        public KuWei DaoKuMuDiHuoWei
-        {
-            get => _daoKuMuDiHuoWei;
-            set => SetPropertyValue(nameof(DaoKuMuDiHuoWei), ref _daoKuMuDiHuoWei, value);
-        }
-
         private DateTime _jiHuaShiJian;
         [DisplayName("计划时间")]
         [ModelDefault("DisplayFormat","{0:yyyy/MM/dd HH:mm:ss}")]
@@ -145,5 +121,8 @@ namespace WMS.Module.BusinessObjects.ZuoYe
             get => _beiZhu;
             set => SetPropertyValue(nameof(BeiZhu), ref _beiZhu, value);
         }
+
+        [Association("RenWu-DaoKus")]
+        public XPCollection<DaoKu> DaoKus=>GetCollection<DaoKu>(nameof(DaoKus));
     }
 }

@@ -43,8 +43,10 @@ namespace WMS.Module.Controllers
                 //倒库处理
                 KuWei DaoKuQiShiHuoWei=DaoKuService.DaoKuQiShiHuoWei(View.ObjectSpace,wuLiao.KuWei);
                 KuWei DaoKuMuDiHuoWei=DaoKuService.DaoKuMuDiHuoWei(View.ObjectSpace,DaoKuQiShiHuoWei);
+                //创建倒库任务
+                DaoKuService.XiaFaChuKuRenWu(View.ObjectSpace, wuLiao, DaoKuQiShiHuoWei, DaoKuMuDiHuoWei);
                 //创建出库任务
-                RenWuService.XiaFaChuKuRenWu(View.ObjectSpace,wuLiao,DaoKuQiShiHuoWei,DaoKuMuDiHuoWei);
+                RenWuService.XiaFaChuKuRenWu(View.ObjectSpace,wuLiao);
                 //锁定货位
                 KuWeiService.XiaFaChuKuRenWu(View.ObjectSpace, wuLiao,DaoKuQiShiHuoWei,DaoKuMuDiHuoWei);
                 ObjectSpace.CommitChanges();

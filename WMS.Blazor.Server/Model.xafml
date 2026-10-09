@@ -428,6 +428,30 @@
       </Layout>
     </DetailView>
     <ListView Id="ChuKou_ListView" Caption="出口管理" ImageName="BO_Vendor" />
+    <DetailView Id="DaoKu_DetailView" ImageName="BO_Task" Caption="倒库作业">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="DaoKu" Caption="倒库作业" RelativeSize="25.486725663716815">
+              <LayoutGroup Id="DaoKu_col1" RelativeSize="49.946409431939976">
+                <LayoutItem Id="RenWu" RelativeSize="36.53846153846154" />
+                <LayoutItem Id="BaoHao" RelativeSize="26.923076923076923" />
+                <LayoutItem Id="QiShiKuWei" RelativeSize="36.53846153846154" />
+              </LayoutGroup>
+              <LayoutGroup Id="DaoKu_col2" RelativeSize="50.053590568060024">
+                <LayoutItem Id="MuDiKuWei" RelativeSize="36.53846153846154" />
+                <LayoutItem Id="RenWuZhuangTai" RelativeSize="26.923076923076923" />
+                <LayoutItem Id="WanChengShiJian" RelativeSize="36.53846153846154" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="XPObject" Caption="Oid" RelativeSize="74.51327433628319">
+              <LayoutItem Id="Oid" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="DaoKu_ListView" ImageName="CustomerProfileReport" Caption="倒库作业" />
     <DetailView Id="DashboardData_DetailView" Caption="仪表盘数据" />
     <ListView Id="DashboardData_ListView" Caption="仪表盘">
       <Columns>
@@ -665,6 +689,7 @@
           <LayoutGroup Id="SimpleEditors">
             <LayoutGroup Id="RenWu" Caption="控制作业" ImageName="BO_Task" />
           </LayoutGroup>
+          <LayoutGroup Id="DaoKus_Group" ImageName="CustomerProfileReport" Caption="倒库作业" />
         </LayoutGroup>
       </Layout>
     </DetailView>

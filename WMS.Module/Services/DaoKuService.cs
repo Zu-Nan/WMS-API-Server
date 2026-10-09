@@ -7,6 +7,7 @@ using DevExpress.CodeParser;
 using DevExpress.ExpressApp;
 using WMS.Module.BusinessObjects.JiChuDate;
 using WMS.Module.BusinessObjects.KuCun;
+using WMS.Module.BusinessObjects.ZuoYe;
 
 namespace WMS.Module.Services
 {
@@ -67,6 +68,16 @@ namespace WMS.Module.Services
                 return mudi;
             }
             return null;
+        }
+
+        public static void XiaFaChuKuRenWu(IObjectSpace objectSpace,WuLiao wuliao,KuWei DaoKuQiShiHuoWei,KuWei DaoKuMuDiHuoWei)
+        {
+            DaoKu daoku=objectSpace.CreateObject<DaoKu>();
+
+            daoku.BaoHao=DaoKuQiShiHuoWei.BaoHao;
+            daoku.QiShiKuWei=DaoKuQiShiHuoWei;
+            daoku.MuDiKuWei=DaoKuMuDiHuoWei;
+            daoku.RenWuZhuangTai=RenWuZhuangTai.ZhengZaiZhiXing;
         }
     }
 }

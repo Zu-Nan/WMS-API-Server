@@ -17,20 +17,21 @@ namespace WMS.Module.Services
         public static void XinJian(IObjectSpace os,WuLiaoHelper wl)
         {
             RuKou ruKou=os.GetObjects<RuKou>().FirstOrDefault(x=>x.RuKouNum==wl.RuKouName);
+
             ruKou.BaoHao=wl.BaoHao;
             ruKou.Time=DateTime.Now;
         }
 
-        //执行入库
-        public RuKou ZhiXing(string ruKouNum)
+        //执行入库  
+        public static RuKou ZhiXing(IObjectSpace os,string ruKouNum)
         {
-            using var os=objectSpaceFactory.CreateObjectSpace(typeof(RuKou));
-
             RuKou ruKou=os.GetObjects<RuKou>().FirstOrDefault(x=>x.RuKouNum==ruKouNum);
+
             if(ruKou==null)
             {
                 throw new Exception($"入库口{ruKouNum}不存在");
             }
+
             return ruKou;
         }
     }

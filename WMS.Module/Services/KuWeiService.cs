@@ -3,6 +3,7 @@ using WMS.Module.BusinessObjects.JiChuDate;
 using WMS.Module.BusinessObjects.ZuoYe;
 using WMS.Module.BusinessObjects.TongJi;
 using WMS.Module.BusinessObjects.KuCun;
+using DevExpress.CodeParser;
 
 namespace WMS.Module.Services
 {
@@ -16,11 +17,8 @@ namespace WMS.Module.Services
         }
 
         //执行入库,找空货位
-        public KuWei ZhiXing()
+        public static KuWei ZhiXing(IObjectSpace os)
         {
-            using var os=objectSpaceFactory.CreateObjectSpace(typeof(KuWei));
-            using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
-
             KuWei kuWei=os.GetObjects<KuWei>().FirstOrDefault(x=>x.QiYong==true&&x.IsEmpty==true&&x.IsLock==false);
 
             if(kuWei==null)
@@ -35,18 +33,16 @@ namespace WMS.Module.Services
             {
                 wcKuWei.IsLock=true;
             }
-            
-            os.CommitChanges();
+
+            using var logSpace = os.CreateNestedObjectSpace();
 
             LogHelper.WriteMessage(logSpace,"KuWeiService.ZhiXing",$"分配货位,货位编号={kuWei.KuWeiNum}");  
             return kuWei;
         }
 
         //入库完成
-        public void RuKuWanCheng(RenWu renWu)
+        public static void RuKuWanCheng(IObjectSpace os, RenWu renWu)
         {
-            using var os=objectSpaceFactory.CreateObjectSpace(typeof(KuWei));
-
             KuWei kuWei=os.GetObjectsQuery<KuWei>().FirstOrDefault(x=>x.KuWeiNum==renWu.KuWei.KuWeiNum);
 
             kuWei.IsLock=false;
@@ -57,43 +53,38 @@ namespace WMS.Module.Services
             {
                 wcKuWei.IsLock=false;
             }
-            os.CommitChanges();
         }
 
         //出库完成
-        public void ChuKuWanCheng(RenWu renWu)
+        public static void ChuKuWanCheng(IObjectSpace os, RenWu renWu)
         {
-            using var kuweios=objectSpaceFactory.CreateObjectSpace(typeof(KuWei));
-            using var waiceos=objectSpaceFactory.CreateObjectSpace(typeof(KuWei));
-
-            KuWei kuWei=kuweios.GetObjectsQuery<KuWei>().FirstOrDefault(x=>x.KuWeiNum==renWu.KuWei.KuWeiNum);
+            KuWei kuWei=os.GetObjectsQuery<KuWei>().FirstOrDefault(x=>x.KuWeiNum==renWu.KuWei.KuWeiNum);
 
             kuWei.IsLock=false;
             kuWei.IsEmpty=true;
             kuWei.BaoHao=null;
             if (renWu.IsDaoKu == true)
             {
-                renWu.DaoKuMuDiHuoWei.IsLock=false;
-                renWu.DaoKuQiShiHuoWei.IsLock=false;
-                renWu.DaoKuMuDiHuoWei.BaoHao=renWu.DaoKuQiShiHuoWei.BaoHao;
-                renWu.DaoKuQiShiHuoWei.BaoHao=null;
-                renWu.DaoKuQiShiHuoWei.IsEmpty=true;
-                renWu.DaoKuMuDiHuoWei.IsEmpty=false;
-
-                KuWei wc=waice(waiceos, renWu.DaoKuMuDiHuoWei);
-                if (wc != null)
+                while (renWu.DaoKus.Count>0)
                 {
-                    wc.IsLock=false;
+                    DaoKu daoKu=os.GetObjectsQuery<DaoKu>().FirstOrDefault(x=>x.RenWu==renWu&&x.RenWuZhuangTai==RenWuZhuangTai.ZhengZaiZhiXing);
+                    daoKu.RenWuZhuangTai=RenWuZhuangTai.ZiDongWanCheng;
+                    daoKu.WanChengShiJian=DateTime.Now;
+
+                    KuWei wc=waice(os, daoKu.MuDiKuWei);
+                    if (wc != null)
+                    {
+                        wc.IsLock=false;
+                    }
                 }
+                
             }
 
-            KuWei wcKuWei=waice(kuweios, kuWei);
+            KuWei wcKuWei=waice(os, kuWei);
             if (wcKuWei != null)
             {
                 wcKuWei.IsLock=false;
             }
-            kuweios.CommitChanges();
-            waiceos.CommitChanges();
         }
 
         //入库撤销

@@ -30,10 +30,6 @@ namespace WMS.Blazor.Server.Controllers
             {
                 using var os=objectSpaceFactory.CreateObjectSpace(typeof(RenWu));
 
-                RenWuService rwService=new RenWuService(objectSpaceFactory);
-                WuLiaoService wlService=new WuLiaoService(objectSpaceFactory);
-                KuWeiService kwService=new KuWeiService(objectSpaceFactory);
-
                 //Oid查任务
                 RenWu renwu=os.GetObjectByKey<RenWu>(renwuOid);
                 if (renwu == null)
@@ -43,16 +39,16 @@ namespace WMS.Blazor.Server.Controllers
 
                 if(renwu.RenWuLeiXing==RenWuLeiXing.RuKuRenWu)//入库任务
                 {
-                    wlService.RuKuWanCheng(renwu);
-                    kwService.RuKuWanCheng(renwu);
+                    WuLiaoService.RuKuWanCheng(os, renwu);
+                    KuWeiService.RuKuWanCheng(os, renwu);
                 }
                 else//出库任务
                 {
-                    wlService.ChuKuWanCheng(renwu);
-                    kwService.ChuKuWanCheng(renwu);
+                    WuLiaoService.ChuKuWanCheng(os, renwu);
+                    KuWeiService.ChuKuWanCheng(os, renwu);
                 }
 
-                rwService.WanCheng(renwu);
+                RenWuService.WanCheng(os, renwu);
                 os.CommitChanges();
 
                 return Ok(new{success=true,message="任务已完成"});
@@ -137,16 +133,14 @@ namespace WMS.Blazor.Server.Controllers
         {
             try
             {
-                RuKouService rkService=new RuKouService(objectSpaceFactory);
-                WuLiaoService wlService=new WuLiaoService(objectSpaceFactory);
-                RenWuService rwService=new RenWuService(objectSpaceFactory);
-                KuWeiService kwService=new KuWeiService(objectSpaceFactory);
+                using var os = objectSpaceFactory.CreateObjectSpace(typeof(RuKou));
 
-                RuKou rukou=rkService.ZhiXing(rukouNum);
-                KuWei kuwei=kwService.ZhiXing();
-                wlService.ZhiXing(rukou,kuwei);
-                rwService.ZhiXing(rukou,kuwei);
-
+                RuKou rukou=RuKouService.ZhiXing(os,rukouNum);
+                KuWei kuwei=KuWeiService.ZhiXing(os);
+                WuLiaoService.ZhiXing(os,rukou,kuwei);
+                RenWuService.ZhiXing(os,rukou,kuwei);
+                os.CommitChanges();
+ 
                 return Ok(new{success=true,message="任务已执行"});
             }
             catch(Exception ex)

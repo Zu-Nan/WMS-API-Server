@@ -18,15 +18,16 @@ namespace WMS.Module.Services
         //新建物料
         public static void XinJian(IObjectSpace os, WuLiaoHelper wl)
         {
-           
+
             //系统包号不得重复
-            bool cunzai=os.GetObjectsQuery<WuLiao>()
-            .Any(x=>x.BaoHao==wl.BaoHao &&
-                    x.CunChuZhuangTai!=CunChuZhuangTai.RuKuQuXiao &&
-                    x.CunChuZhuangTai!=CunChuZhuangTai.ChuKuWanCheng);
+            WuLiao cunzai = os.GetObjectsQuery<WuLiao>()
+                          .Where(x => x.BaoHao == wl.BaoHao &&
+                                      x.CunChuZhuangTai == CunChuZhuangTai.RuKuWanCheng)
+                          .OrderByDescending(x=>x.Oid)
+                          .FirstOrDefault();
 
             //不满足条件抛出异常
-            if(!cunzai)
+            if(cunzai==null)
             {
                 throw new Exception($"系统包号{wl.BaoHao}已存在");
             }
@@ -44,11 +45,8 @@ namespace WMS.Module.Services
         }
 
         //物料入库完成
-        public void RuKuWanCheng(RenWu renWu)
+        public static void RuKuWanCheng(IObjectSpace os, RenWu renWu)
         {
-            using var os=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
-            using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
-
             //根据包号倒序查物料
             WuLiao wuLiao=os.GetObjectsQuery<WuLiao>()
             .Where(x=>x.BaoHao==renWu.BaoHao)
@@ -63,16 +61,11 @@ namespace WMS.Module.Services
             wuLiao.CunChuZhuangTai=CunChuZhuangTai.RuKuWanCheng;
             wuLiao.RuKuTime=DateTime.Now;
             wuLiao.KuCunCount=1;
-            os.CommitChanges();
         }
 
         //物料出库完成
-        public void ChuKuWanCheng(RenWu renWu)
+        public static void ChuKuWanCheng(IObjectSpace os, RenWu renWu)
         {
-            using var os=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
-            using var dkos=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
-            using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
-
             //根据包号倒序查物料
             WuLiao wuLiao=os.GetObjectsQuery<WuLiao>()
             .Where(x=>x.BaoHao==renWu.BaoHao)
@@ -91,14 +84,12 @@ namespace WMS.Module.Services
             if (renWu.IsDaoKu == true)
             {
                 WuLiao dkWuLiao=os.GetObjectsQuery<WuLiao>()
-                                    .Where(x=>x.BaoHao==renWu.DaoKuBaohao) 
+                                    .Where(x=>x.BaoHao==renWu.DaoKus.FirstOrDefault().BaoHao) 
                                     .OrderByDescending(x=>x.Oid)
                                     .FirstOrDefault();
 
-                dkWuLiao.KuWei = os.GetObjectByKey<KuWei>(renWu.DaoKuMuDiHuoWei.Oid);
+                dkWuLiao.KuWei = os.GetObjectByKey<KuWei>(renWu.DaoKus.FirstOrDefault().MuDiKuWei.Oid);
             }
-            dkos.CommitChanges();
-            os.CommitChanges();
         }
 
         //物料入库撤销
@@ -146,10 +137,8 @@ namespace WMS.Module.Services
         }
 
         //执行入库
-        public void ZhiXing(RuKou ruKou,KuWei kuWei)
+        public static void ZhiXing(IObjectSpace os, RuKou ruKou, KuWei kuWei)
         {
-            using var os=objectSpaceFactory.CreateObjectSpace(typeof(WuLiao));
-
             var kuwei=os.GetObjectByKey<KuWei>(kuWei.Oid);
     
             //根据包号倒序查物料
@@ -166,7 +155,6 @@ namespace WMS.Module.Services
             wuLiao.CunChuZhuangTai=CunChuZhuangTai.ZhengZaiRuKu;
             wuLiao.KuWei=kuwei;
 
-            os.CommitChanges();
         }
 
         //下发出库任务
@@ -175,7 +163,6 @@ namespace WMS.Module.Services
             wuLiao.CunChuZhuangTai=CunChuZhuangTai.ZhengZaiChuKu;
             wuLiao.ChuKouName="9001";
             wuLiao.ZhixingChuku=true;
-            //objectSpace.CommitChanges();
         }
     }
 }

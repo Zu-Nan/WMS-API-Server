@@ -17,13 +17,12 @@ namespace WMS.Module.Services
         }
 
         //任务完成
-        public void WanCheng(RenWu renWu)
+        public static void WanCheng(IObjectSpace os, RenWu renWu)
         {
-            using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
-
             renWu.WanChengShiJian=DateTime.Now;
             renWu.RenWuZhuangTai=RenWuZhuangTai.ZiDongWanCheng;
 
+            using var logSpace = os.CreateNestedObjectSpace();
             LogHelper.WriteMessage(logSpace,"RenWuService.WanCheng",$"{renWu.RenWuLeiXing}已完成,Oid={renWu.Oid},包号={renWu.BaoHao}");
         }
         
@@ -55,11 +54,8 @@ namespace WMS.Module.Services
         }
 
         //执行入库
-        public void ZhiXing(RuKou ruKou,KuWei kuWei)
+        public static void ZhiXing(IObjectSpace os, RuKou ruKou, KuWei kuWei)
         {
-            using var os=objectSpaceFactory.CreateObjectSpace(typeof(RenWu));
-            using var logSpace=objectSpaceFactory.CreateObjectSpace<Log>();
-
             var kuwei=os.GetObjectByKey<KuWei>(kuWei.Oid);
 
             //根据包号倒序查任务
@@ -79,11 +75,12 @@ namespace WMS.Module.Services
             renWu.KuWei=kuwei;
             os.CommitChanges();
 
+            using var logSpace = os.CreateNestedObjectSpace();
             LogHelper.WriteMessage(logSpace,"RenWuService.ZhiXing",$"入库任务已执行,Oid={renWu.Oid},包号={renWu.BaoHao}");
         }
 
         //下发出库任务
-        public static void XiaFaChuKuRenWu(IObjectSpace objectSpace,WuLiao wuLiao,KuWei DaoKuQiShiHuoWei,KuWei DaoKuMuDiHuoWei)
+        public static void XiaFaChuKuRenWu(IObjectSpace objectSpace,WuLiao wuLiao)
         {
             RenWu renwu=objectSpace.CreateObject<RenWu>();
 
@@ -93,18 +90,14 @@ namespace WMS.Module.Services
             renwu.RenWuLeiXing=RenWuLeiXing.ChuKuRenWu;
             renwu.RuKouName = wuLiao.MaKouName;
             renwu.ChuKouName=wuLiao.ChuKouName;
-            if (DaoKuQiShiHuoWei != null)
+            if (renwu.DaoKus.Count > 0)
             {
                 renwu.IsDaoKu=true;
-                renwu.DaoKuBaohao=DaoKuQiShiHuoWei.BaoHao;
             }
-            renwu.DaoKuQiShiHuoWei=DaoKuQiShiHuoWei;
-            renwu.DaoKuMuDiHuoWei=DaoKuMuDiHuoWei;
             renwu.JiHuaShiJian=DateTime.Now.AddMinutes(10);
             renwu.FaSongShiJian=DateTime.Now;
             renwu.ZhiXingShiJian=DateTime.Now;
             renwu.ChuangJianShiJian=DateTime.Now;
-            //objectSpace.CommitChanges();
 
             LogHelper.WriteMessage(objectSpace,"RenWuService.XiaFaChuKuRenWu",$"下发出库任务,Oid={renwu.Oid},包号={renwu.BaoHao}");
         }
