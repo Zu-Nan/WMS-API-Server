@@ -18,16 +18,54 @@ namespace WMS.Module.Services
         //新建物料
         public static void XinJian(IObjectSpace os, WuLiaoHelper wl)
         {
-
+            bool cunzai=false;
             //系统包号不得重复
-            WuLiao cunzai = os.GetObjectsQuery<WuLiao>()
-                          .Where(x => x.BaoHao == wl.BaoHao &&
-                                      x.CunChuZhuangTai == CunChuZhuangTai.RuKuWanCheng)
-                          .OrderByDescending(x=>x.Oid)
-                          .FirstOrDefault();
+            if(os.GetObjectsQuery<WuLiao>()
+                          .Any(x => x.BaoHao == wl.BaoHao &&
+                                    x.CunChuZhuangTai == CunChuZhuangTai.DengDaiRuKu))
+            {
+                cunzai=true;
+            }
+            if(os.GetObjectsQuery<WuLiao>()
+                          .Any(x => x.BaoHao == wl.BaoHao &&
+                                    x.CunChuZhuangTai == CunChuZhuangTai.ZhengZaiRuKu))
+            {
+                cunzai=true;
+            }
+            if(os.GetObjectsQuery<WuLiao>()
+                          .Any(x => x.BaoHao == wl.BaoHao &&
+                                    x.CunChuZhuangTai == CunChuZhuangTai.RuKuWanCheng))
+            {
+                cunzai=true;
+            }
+            if(os.GetObjectsQuery<WuLiao>()
+                          .Any(x => x.BaoHao == wl.BaoHao &&
+                                    x.CunChuZhuangTai == CunChuZhuangTai.DengDaiChuKu))
+            {
+                cunzai=true;
+            }
+            if(os.GetObjectsQuery<WuLiao>()
+                          .Any(x => x.BaoHao == wl.BaoHao &&
+                                    x.CunChuZhuangTai == CunChuZhuangTai.ZhengZaiChuKu))
+            {
+                cunzai=true;
+            }  
+            if(os.GetObjectsQuery<WuLiao>()
+                          .Any(x => x.BaoHao == wl.BaoHao &&
+                                    x.CunChuZhuangTai == CunChuZhuangTai.ChuKuZhongDuan))
+            {
+                cunzai=true;
+            }
+            if(os.GetObjectsQuery<WuLiao>()
+                          .Any(x => x.BaoHao == wl.BaoHao &&
+                                    x.CunChuZhuangTai == CunChuZhuangTai.ChuKuQuXiao))
+            {
+                cunzai=true;
+            }  
+
 
             //不满足条件抛出异常
-            if(cunzai==null)
+            if(cunzai)
             {
                 throw new Exception($"系统包号{wl.BaoHao}已存在");
             }
